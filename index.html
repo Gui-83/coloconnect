@@ -1,0 +1,924 @@
+<!Doctype html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Contrat de sous-location - contrat-bail-sous-location.pdf</title>
+
+<!-- This snippet is used in the Firefox extension (included from viewer.html) -->
+<script src="resource://pdf.js/build/pdf.mjs" type="module"></script>
+
+  <link rel="stylesheet" href="resource://pdf.js/web/viewer.css">
+  <link rel="localization" href="toolkit/pdfviewer/viewer.ftl">
+
+  <script src="resource://pdf.js/web/viewer.mjs" type="module"></script>
+  </head>
+
+  <body tabindex="1">
+    <div id="outerContainer">
+
+      <div id="sidebarContainer">
+        <div id="toolbarSidebar">
+          <div id="toolbarSidebarLeft">
+            <div id="sidebarViewButtons" class="splitToolbarButton toggled" role="radiogroup">
+              <button id="viewThumbnail" class="toolbarButton toggled" title="Afficher les vignettes" tabindex="2" data-l10n-id="pdfjs-thumbs-button" role="radio" aria-checked="true" aria-controls="thumbnailView">
+                 <span data-l10n-id="pdfjs-thumbs-button-label">Vignettes</span>
+              </button>
+              <button id="viewOutline" class="toolbarButton" title="Afficher les signets du document (double-cliquer pour développer/réduire tous les éléments)" tabindex="3" data-l10n-id="pdfjs-document-outline-button" role="radio" aria-checked="false" aria-controls="outlineView" disabled="">
+                 <span data-l10n-id="pdfjs-document-outline-button-label">Signets du document</span>
+              </button>
+              <button id="viewAttachments" class="toolbarButton" title="Afficher les pièces jointes" tabindex="4" data-l10n-id="pdfjs-attachments-button" role="radio" aria-checked="false" aria-controls="attachmentsView" disabled="">
+                 <span data-l10n-id="pdfjs-attachments-button-label">Pièces jointes</span>
+              </button>
+              <button id="viewLayers" class="toolbarButton" title="Afficher les calques (double-cliquer pour réinitialiser tous les calques à l’état par défaut)" tabindex="5" data-l10n-id="pdfjs-layers-button" role="radio" aria-checked="false" aria-controls="layersView" disabled="">
+                 <span data-l10n-id="pdfjs-layers-button-label">Calques</span>
+              </button>
+            </div>
+          </div>
+
+          <div id="toolbarSidebarRight">
+            <div id="outlineOptionsContainer">
+              <div class="verticalToolbarSeparator"></div>
+
+              <button id="currentOutlineItem" class="toolbarButton" disabled="" title="Trouver l’élément de plan actuel" tabindex="6" data-l10n-id="pdfjs-current-outline-item-button">
+                <span data-l10n-id="pdfjs-current-outline-item-button-label">Élément de plan actuel</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div id="sidebarContent">
+          <div id="thumbnailView"><a href="#page=1" data-l10n-id="pdfjs-thumb-page-title" data-l10n-args="{&quot;page&quot;:1}" title="Page 1"><div class="thumbnail selected" data-page-number="1" style="--thumbnail-width: 98px; --thumbnail-height: 138px;"><div class="thumbnailImage"></div></div></a><a href="#page=2" data-l10n-id="pdfjs-thumb-page-title" data-l10n-args="{&quot;page&quot;:2}" title="Page 2"><div class="thumbnail" data-page-number="2" style="--thumbnail-width: 98px; --thumbnail-height: 138px;"><div class="thumbnailImage"></div></div></a><a href="#page=3" data-l10n-id="pdfjs-thumb-page-title" data-l10n-args="{&quot;page&quot;:3}" title="Page 3"><div class="thumbnail" data-page-number="3" style="--thumbnail-width: 98px; --thumbnail-height: 138px;"><div class="thumbnailImage"></div></div></a></div>
+          <div id="outlineView" class="hidden"></div>
+          <div id="attachmentsView" class="hidden"></div>
+          <div id="layersView" class="hidden"></div>
+        </div>
+        <div id="sidebarResizer"></div>
+      </div>  <!-- sidebarContainer -->
+
+      <div id="mainContainer">
+        <div class="findbar hidden doorHanger" id="findbar">
+          <div id="findbarInputContainer">
+            <span class="loadingInput end">
+              <input id="findInput" class="toolbarField" title="Rechercher" placeholder="Rechercher dans le document…" tabindex="91" data-l10n-id="pdfjs-find-input" aria-invalid="false">
+            </span>
+            <div class="splitToolbarButton">
+              <button id="findPrevious" class="toolbarButton" title="Trouver l’occurrence précédente de l’expression" tabindex="92" data-l10n-id="pdfjs-find-previous-button">
+                <span data-l10n-id="pdfjs-find-previous-button-label">Précédent</span>
+              </button>
+              <div class="splitToolbarButtonSeparator"></div>
+              <button id="findNext" class="toolbarButton" title="Trouver la prochaine occurrence de l’expression" tabindex="93" data-l10n-id="pdfjs-find-next-button">
+                <span data-l10n-id="pdfjs-find-next-button-label">Suivant</span>
+              </button>
+            </div>
+          </div>
+
+          <div id="findbarOptionsOneContainer">
+            <input type="checkbox" id="findHighlightAll" class="toolbarField" tabindex="94">
+            <label for="findHighlightAll" class="toolbarLabel" data-l10n-id="pdfjs-find-highlight-checkbox">Tout surligner</label>
+            <input type="checkbox" id="findMatchCase" class="toolbarField" tabindex="95">
+            <label for="findMatchCase" class="toolbarLabel" data-l10n-id="pdfjs-find-match-case-checkbox-label">Respecter la casse</label>
+          </div>
+          <div id="findbarOptionsTwoContainer">
+            <input type="checkbox" id="findMatchDiacritics" class="toolbarField" tabindex="96">
+            <label for="findMatchDiacritics" class="toolbarLabel" data-l10n-id="pdfjs-find-match-diacritics-checkbox-label">Respecter les accents et diacritiques</label>
+            <input type="checkbox" id="findEntireWord" class="toolbarField" tabindex="97">
+            <label for="findEntireWord" class="toolbarLabel" data-l10n-id="pdfjs-find-entire-word-checkbox-label">Mots entiers</label>
+          </div>
+
+          <div id="findbarMessageContainer" aria-live="polite">
+            <span id="findResultsCount" class="toolbarLabel"></span>
+            <span id="findMsg" class="toolbarLabel"></span>
+          </div>
+        </div>  <!-- findbar -->
+
+        <div class="editorParamsToolbar hidden doorHangerRight" id="editorHighlightParamsToolbar">
+          <div id="highlightParamsToolbarContainer" class="editorParamsToolbarContainer">
+            <div id="editorHighlightColorPicker" class="colorPicker">
+              <span id="highlightColorPickerLabel" class="editorParamsLabel" data-l10n-id="pdfjs-editor-highlight-colorpicker-label">Couleur de surlignage</span>
+            <div class="dropdown" role="listbox" aria-multiselectable="false" aria-orientation="horizontal" data-l10n-id="pdfjs-editor-colorpicker-dropdown" aria-labelledby="highlightColorPickerLabel" aria-label="Choix de couleurs"><button tabindex="0" role="option" data-color="#FFFF98" title="Jaune" data-l10n-id="pdfjs-editor-colorpicker-yellow" aria-selected="true"><span class="swatch" style="background-color: rgb(255, 255, 152);"></span></button><button tabindex="0" role="option" data-color="#53FFBC" title="Vert" data-l10n-id="pdfjs-editor-colorpicker-green" aria-selected="false"><span class="swatch" style="background-color: rgb(83, 255, 188);"></span></button><button tabindex="0" role="option" data-color="#80EBFF" title="Bleu" data-l10n-id="pdfjs-editor-colorpicker-blue" aria-selected="false"><span class="swatch" style="background-color: rgb(128, 235, 255);"></span></button><button tabindex="0" role="option" data-color="#FFCBE6" title="Rose" data-l10n-id="pdfjs-editor-colorpicker-pink" aria-selected="false"><span class="swatch" style="background-color: rgb(255, 203, 230);"></span></button><button tabindex="0" role="option" data-color="#FF4F5F" title="Rouge" data-l10n-id="pdfjs-editor-colorpicker-red" aria-selected="false"><span class="swatch" style="background-color: rgb(255, 79, 95);"></span></button></div></div>
+            <div id="editorHighlightThickness">
+              <label for="editorFreeHighlightThickness" class="editorParamsLabel" data-l10n-id="pdfjs-editor-free-highlight-thickness-input">Épaisseur</label>
+              <div class="thicknessPicker">
+                <input type="range" id="editorFreeHighlightThickness" class="editorParamsSlider" data-l10n-id="pdfjs-editor-free-highlight-thickness-title" value="12" min="8" max="24" step="1" tabindex="101" title="Modifier l’épaisseur pour le surlignage d’éléments non textuels">
+              </div>
+            </div>
+            <div id="editorHighlightVisibility">
+              <div class="divider"></div>
+              <div class="toggler">
+                <label for="editorHighlightShowAll" class="editorParamsLabel" data-l10n-id="pdfjs-editor-highlight-show-all-button-label">Tout afficher</label>
+                <button id="editorHighlightShowAll" class="toggle-button" data-l10n-id="pdfjs-editor-highlight-show-all-button" aria-pressed="true" tabindex="102" title="Tout afficher"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="editorParamsToolbar hidden doorHangerRight" id="editorFreeTextParamsToolbar">
+          <div class="editorParamsToolbarContainer">
+            <div class="editorParamsSetter">
+              <label for="editorFreeTextColor" class="editorParamsLabel" data-l10n-id="pdfjs-editor-free-text-color-input">Couleur</label>
+              <input type="color" id="editorFreeTextColor" class="editorParamsColor" tabindex="103">
+            </div>
+            <div class="editorParamsSetter">
+              <label for="editorFreeTextFontSize" class="editorParamsLabel" data-l10n-id="pdfjs-editor-free-text-size-input">Taille</label>
+              <input type="range" id="editorFreeTextFontSize" class="editorParamsSlider" value="10" min="5" max="100" step="1" tabindex="104">
+            </div>
+          </div>
+        </div>
+
+        <div class="editorParamsToolbar hidden doorHangerRight" id="editorInkParamsToolbar">
+          <div class="editorParamsToolbarContainer">
+            <div class="editorParamsSetter">
+              <label for="editorInkColor" class="editorParamsLabel" data-l10n-id="pdfjs-editor-ink-color-input">Couleur</label>
+              <input type="color" id="editorInkColor" class="editorParamsColor" tabindex="105">
+            </div>
+            <div class="editorParamsSetter">
+              <label for="editorInkThickness" class="editorParamsLabel" data-l10n-id="pdfjs-editor-ink-thickness-input">Épaisseur</label>
+              <input type="range" id="editorInkThickness" class="editorParamsSlider" value="1" min="1" max="20" step="1" tabindex="106">
+            </div>
+            <div class="editorParamsSetter">
+              <label for="editorInkOpacity" class="editorParamsLabel" data-l10n-id="pdfjs-editor-ink-opacity-input">Opacité</label>
+              <input type="range" id="editorInkOpacity" class="editorParamsSlider" value="100" min="1" max="100" step="1" tabindex="107">
+            </div>
+          </div>
+        </div>
+
+        <div class="editorParamsToolbar hidden doorHangerRight" id="editorStampParamsToolbar">
+          <div class="editorParamsToolbarContainer">
+            <button id="editorStampAddImage" class="secondaryToolbarButton" title="Ajouter une image" tabindex="108" data-l10n-id="pdfjs-editor-stamp-add-image-button">
+              <span class="editorParamsLabel" data-l10n-id="pdfjs-editor-stamp-add-image-button-label">Ajouter une image</span>
+            </button>
+          </div>
+        </div>
+
+        <div id="secondaryToolbar" class="secondaryToolbar hidden doorHangerRight">
+          <div id="secondaryToolbarButtonContainer">
+
+            <button id="secondaryPrint" class="secondaryToolbarButton visibleMediumView" title="Imprimer" tabindex="52" data-l10n-id="pdfjs-print-button">
+              <span data-l10n-id="pdfjs-print-button-label">Imprimer</span>
+            </button>
+
+            <button id="secondaryDownload" class="secondaryToolbarButton visibleMediumView" title="Enregistrer" tabindex="53" data-l10n-id="pdfjs-save-button">
+              <span data-l10n-id="pdfjs-save-button-label">Enregistrer</span>
+            </button>
+
+          <div class="horizontalToolbarSeparator visibleMediumView"></div>
+
+            <button id="presentationMode" class="secondaryToolbarButton" title="Basculer en mode présentation" tabindex="54" data-l10n-id="pdfjs-presentation-mode-button">
+              <span data-l10n-id="pdfjs-presentation-mode-button-label">Mode présentation</span>
+            </button>
+
+            <a href="#page=1&amp;zoom=auto,-82,848" id="viewBookmark" class="secondaryToolbarButton" title="Page courante (montrer l’adresse de la page courante)" tabindex="55" data-l10n-id="pdfjs-bookmark-button">
+              <span data-l10n-id="pdfjs-bookmark-button-label">Page courante</span>
+            </a>
+
+            <div id="viewBookmarkSeparator" class="horizontalToolbarSeparator"></div>
+
+            <button id="firstPage" class="secondaryToolbarButton" title="Aller à la première page" tabindex="56" data-l10n-id="pdfjs-first-page-button" disabled="">
+              <span data-l10n-id="pdfjs-first-page-button-label">Aller à la première page</span>
+            </button>
+            <button id="lastPage" class="secondaryToolbarButton" title="Aller à la dernière page" tabindex="57" data-l10n-id="pdfjs-last-page-button">
+              <span data-l10n-id="pdfjs-last-page-button-label">Aller à la dernière page</span>
+            </button>
+
+            <div class="horizontalToolbarSeparator"></div>
+
+            <button id="pageRotateCw" class="secondaryToolbarButton" title="Rotation horaire" tabindex="58" data-l10n-id="pdfjs-page-rotate-cw-button">
+              <span data-l10n-id="pdfjs-page-rotate-cw-button-label">Rotation horaire</span>
+            </button>
+            <button id="pageRotateCcw" class="secondaryToolbarButton" title="Rotation antihoraire" tabindex="59" data-l10n-id="pdfjs-page-rotate-ccw-button">
+              <span data-l10n-id="pdfjs-page-rotate-ccw-button-label">Rotation antihoraire</span>
+            </button>
+
+            <div class="horizontalToolbarSeparator"></div>
+
+            <div id="cursorToolButtons" role="radiogroup">
+              <button id="cursorSelectTool" class="secondaryToolbarButton toggled" title="Activer l’outil de sélection de texte" tabindex="60" data-l10n-id="pdfjs-cursor-text-select-tool-button" role="radio" aria-checked="true">
+                <span data-l10n-id="pdfjs-cursor-text-select-tool-button-label">Outil de sélection de texte</span>
+              </button>
+              <button id="cursorHandTool" class="secondaryToolbarButton" title="Activer l’outil main" tabindex="61" data-l10n-id="pdfjs-cursor-hand-tool-button" role="radio" aria-checked="false">
+                <span data-l10n-id="pdfjs-cursor-hand-tool-button-label">Outil main</span>
+              </button>
+            </div>
+
+            <div class="horizontalToolbarSeparator"></div>
+
+            <div id="scrollModeButtons" role="radiogroup">
+              <button id="scrollPage" class="secondaryToolbarButton" title="Utiliser le défilement par page" tabindex="62" data-l10n-id="pdfjs-scroll-page-button" role="radio" aria-checked="false">
+                <span data-l10n-id="pdfjs-scroll-page-button-label">Défilement par page</span>
+              </button>
+              <button id="scrollVertical" class="secondaryToolbarButton toggled" title="Utiliser le défilement vertical" tabindex="63" data-l10n-id="pdfjs-scroll-vertical-button" role="radio" aria-checked="true">
+                <span data-l10n-id="pdfjs-scroll-vertical-button-label">Défilement vertical</span>
+              </button>
+              <button id="scrollHorizontal" class="secondaryToolbarButton" title="Utiliser le défilement horizontal" tabindex="64" data-l10n-id="pdfjs-scroll-horizontal-button" role="radio" aria-checked="false">
+                <span data-l10n-id="pdfjs-scroll-horizontal-button-label">Défilement horizontal</span>
+              </button>
+              <button id="scrollWrapped" class="secondaryToolbarButton" title="Utiliser le défilement par bloc" tabindex="65" data-l10n-id="pdfjs-scroll-wrapped-button" role="radio" aria-checked="false">
+                <span data-l10n-id="pdfjs-scroll-wrapped-button-label">Défilement par bloc</span>
+              </button>
+            </div>
+
+            <div class="horizontalToolbarSeparator"></div>
+
+            <div id="spreadModeButtons" role="radiogroup">
+              <button id="spreadNone" class="secondaryToolbarButton toggled" title="Ne pas afficher les pages deux à deux" tabindex="66" data-l10n-id="pdfjs-spread-none-button" role="radio" aria-checked="true">
+                <span data-l10n-id="pdfjs-spread-none-button-label">Pas de double affichage</span>
+              </button>
+              <button id="spreadOdd" class="secondaryToolbarButton" title="Afficher les pages par deux, impaires à gauche" tabindex="67" data-l10n-id="pdfjs-spread-odd-button" role="radio" aria-checked="false">
+                <span data-l10n-id="pdfjs-spread-odd-button-label">Doubles pages, impaires à gauche</span>
+              </button>
+              <button id="spreadEven" class="secondaryToolbarButton" title="Afficher les pages par deux, paires à gauche" tabindex="68" data-l10n-id="pdfjs-spread-even-button" role="radio" aria-checked="false">
+                <span data-l10n-id="pdfjs-spread-even-button-label">Doubles pages, paires à gauche</span>
+              </button>
+            </div>
+
+            <div class="horizontalToolbarSeparator"></div>
+
+            <button id="documentProperties" class="secondaryToolbarButton" title="Propriétés du document…" tabindex="69" data-l10n-id="pdfjs-document-properties-button" aria-controls="documentPropertiesDialog">
+              <span data-l10n-id="pdfjs-document-properties-button-label">Propriétés du document…</span>
+            </button>
+          </div>
+        </div>  <!-- secondaryToolbar -->
+
+        <div class="toolbar">
+          <div id="toolbarContainer">
+            <div id="toolbarViewer">
+              <div id="toolbarViewerLeft">
+                <button id="sidebarToggle" class="toolbarButton" title="Afficher/Masquer le panneau latéral" tabindex="11" data-l10n-id="pdfjs-toggle-sidebar-button" aria-expanded="false" aria-controls="sidebarContainer">
+                  <span data-l10n-id="pdfjs-toggle-sidebar-button-label">Afficher/Masquer le panneau latéral</span>
+                </button>
+                <div class="toolbarButtonSpacer"></div>
+                <button id="viewFind" class="toolbarButton hidden" title="Rechercher dans le document" tabindex="12" data-l10n-id="pdfjs-findbar-button" aria-expanded="false" aria-controls="findbar">
+                  <span data-l10n-id="pdfjs-findbar-button-label">Rechercher</span>
+                </button>
+                <div class="splitToolbarButton hiddenSmallView">
+                  <button class="toolbarButton" title="Page précédente" id="previous" tabindex="13" data-l10n-id="pdfjs-previous-button" disabled="">
+                    <span data-l10n-id="pdfjs-previous-button-label">Précédent</span>
+                  </button>
+                  <div class="splitToolbarButtonSeparator"></div>
+                  <button class="toolbarButton" title="Page suivante" id="next" tabindex="14" data-l10n-id="pdfjs-next-button">
+                    <span data-l10n-id="pdfjs-next-button-label">Suivant</span>
+                  </button>
+                </div>
+                <span class="loadingInput start">
+                  <input type="number" id="pageNumber" class="toolbarField" title="Page" value="1" min="1" tabindex="15" data-l10n-id="pdfjs-page-input" autocomplete="off" max="3">
+                </span>
+                <span id="numPages" class="toolbarLabel" data-l10n-id="pdfjs-of-pages" data-l10n-args="{&quot;pagesCount&quot;:3}">sur 3</span>
+              </div>
+              <div id="toolbarViewerRight">
+                <div id="editorModeButtons" class="splitToolbarButton toggled" role="radiogroup">
+                  <button id="editorHighlight" class="toolbarButton" title="Surligner" role="radio" aria-checked="false" aria-controls="editorHighlightParamsToolbar" tabindex="31" data-l10n-id="pdfjs-editor-highlight-button">
+                    <span data-l10n-id="pdfjs-editor-highlight-button-label">Surligner</span>
+                  </button>
+                  <button id="editorFreeText" class="toolbarButton" title="Texte" role="radio" aria-checked="false" aria-controls="editorFreeTextParamsToolbar" tabindex="32" data-l10n-id="pdfjs-editor-free-text-button">
+                    <span data-l10n-id="pdfjs-editor-free-text-button-label">Texte</span>
+                  </button>
+                  <button id="editorInk" class="toolbarButton" title="Dessiner" role="radio" aria-checked="false" aria-controls="editorInkParamsToolbar" tabindex="33" data-l10n-id="pdfjs-editor-ink-button">
+                    <span data-l10n-id="pdfjs-editor-ink-button-label">Dessiner</span>
+                  </button>
+                  <button id="editorStamp" class="toolbarButton" title="Ajouter ou modifier des images" role="radio" aria-checked="false" aria-controls="editorStampParamsToolbar" tabindex="34" data-l10n-id="pdfjs-editor-stamp-button">
+                    <span data-l10n-id="pdfjs-editor-stamp-button-label">Ajouter ou modifier des images</span>
+                  </button>
+                </div>
+
+                <div id="editorModeSeparator" class="verticalToolbarSeparator"></div>
+
+                <button id="print" class="toolbarButton hiddenMediumView" title="Imprimer" tabindex="41" data-l10n-id="pdfjs-print-button">
+                  <span data-l10n-id="pdfjs-print-button-label">Imprimer</span>
+                </button>
+
+                <button id="download" class="toolbarButton hiddenMediumView" title="Enregistrer" tabindex="42" data-l10n-id="pdfjs-save-button">
+                  <span data-l10n-id="pdfjs-save-button-label">Enregistrer</span>
+                </button>
+
+                <div class="verticalToolbarSeparator hiddenMediumView"></div>
+
+                <button id="secondaryToolbarToggle" class="toolbarButton" title="Outils" tabindex="43" data-l10n-id="pdfjs-tools-button" aria-expanded="false" aria-controls="secondaryToolbar">
+                  <span data-l10n-id="pdfjs-tools-button-label">Outils</span>
+                </button>
+              </div>
+              <div id="toolbarViewerMiddle">
+                <div class="splitToolbarButton">
+                  <button id="zoomOut" class="toolbarButton" title="Zoom arrière" tabindex="21" data-l10n-id="pdfjs-zoom-out-button">
+                    <span data-l10n-id="pdfjs-zoom-out-button-label">Zoom arrière</span>
+                  </button>
+                  <div class="splitToolbarButtonSeparator"></div>
+                  <button id="zoomIn" class="toolbarButton" title="Zoom avant" tabindex="22" data-l10n-id="pdfjs-zoom-in-button">
+                    <span data-l10n-id="pdfjs-zoom-in-button-label">Zoom avant</span>
+                   </button>
+                </div>
+                <span id="scaleSelectContainer" class="dropdownToolbarButton">
+                  <select id="scaleSelect" title="Zoom" tabindex="23" data-l10n-id="pdfjs-zoom-select">
+                    <option id="pageAutoOption" value="auto" selected="selected" data-l10n-id="pdfjs-page-scale-auto">Zoom automatique</option>
+                    <option id="pageActualOption" value="page-actual" data-l10n-id="pdfjs-page-scale-actual">Taille réelle</option>
+                    <option id="pageFitOption" value="page-fit" data-l10n-id="pdfjs-page-scale-fit">Page entière</option>
+                    <option id="pageWidthOption" value="page-width" data-l10n-id="pdfjs-page-scale-width">Pleine largeur</option>
+                    <option id="customScaleOption" value="custom" disabled="disabled" hidden="true" data-l10n-id="pdfjs-page-scale-percent" data-l10n-args="{ &quot;scale&quot;: 0 }">0&nbsp;%</option>
+                    <option value="0.5" data-l10n-id="pdfjs-page-scale-percent" data-l10n-args="{ &quot;scale&quot;: 50 }">50&nbsp;%</option>
+                    <option value="0.75" data-l10n-id="pdfjs-page-scale-percent" data-l10n-args="{ &quot;scale&quot;: 75 }">75&nbsp;%</option>
+                    <option value="1" data-l10n-id="pdfjs-page-scale-percent" data-l10n-args="{ &quot;scale&quot;: 100 }">100&nbsp;%</option>
+                    <option value="1.25" data-l10n-id="pdfjs-page-scale-percent" data-l10n-args="{ &quot;scale&quot;: 125 }">125&nbsp;%</option>
+                    <option value="1.5" data-l10n-id="pdfjs-page-scale-percent" data-l10n-args="{ &quot;scale&quot;: 150 }">150&nbsp;%</option>
+                    <option value="2" data-l10n-id="pdfjs-page-scale-percent" data-l10n-args="{ &quot;scale&quot;: 200 }">200&nbsp;%</option>
+                    <option value="3" data-l10n-id="pdfjs-page-scale-percent" data-l10n-args="{ &quot;scale&quot;: 300 }">300&nbsp;%</option>
+                    <option value="4" data-l10n-id="pdfjs-page-scale-percent" data-l10n-args="{ &quot;scale&quot;: 400 }">400&nbsp;%</option>
+                  </select>
+                </span>
+              </div>
+            </div>
+            <div id="loadingBar" style="--progressBar-percent: 100%; --progressBar-end-offset: 17px;" class="hidden">
+              <div class="progress">
+                <div class="glimmer">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="viewerContainer" tabindex="0">
+          <div id="hiddenCopyElement"></div><div id="viewer" class="pdfViewer" style="--scale-factor: 1.6666666666666665;" lang="es-ES"><div class="page" data-page-number="1" role="region" data-l10n-id="pdfjs-page-landmark" data-l10n-args="{&quot;page&quot;:1}" style="width: round(var(--scale-factor) * 595.276px, 1px); height: round(var(--scale-factor) * 841.89px, 1px);" data-loaded="true" aria-label="Page 1"><div class="canvasWrapper"><canvas role="presentation" width="1491" height="2106" style="width: 994px; height: 1404px;"></canvas></div><div tabindex="0" class="textLayer" style="width: round(var(--scale-factor) * 595.276px, 1px); height: round(var(--scale-factor) * 841.89px, 1px);" data-main-rotation="0"><span style="left: 3.59%; top: 25.52%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(1.02435);" role="presentation" dir="ltr">Désigné(e)(s) ci-après « le locataire principal »</span><br role="presentation"><span style="left: 3.59%; top: 28.37%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(1.06734);" role="presentation" dir="ltr">d’une part</span><br role="presentation"><span style="left: 3.59%; top: 31.22%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.907321);" role="presentation" dir="ltr">ET</span><br role="presentation"><span style="left: 3.59%; top: 40.19%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(1.01098);" role="presentation" dir="ltr">Désigné(e)(s) ci-après « le sous-locataire »</span><br role="presentation"><span style="left: 3.59%; top: 43.04%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.950568);" role="presentation" dir="ltr">D’AUTRE PART</span><br role="presentation"><span style="left: 3.59%; top: 16.38%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.895667);" role="presentation" dir="ltr">ENTRE LES SOUSSIGNÉS</span><br role="presentation"><span style="left: 3.59%; top: 46.74%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.916436);" dir="ltr" aria-owns="pdfjs_internal_id_157R">IL EST RAPPELÉ CE QUI SUIT :</span><br role="presentation"><span style="left: 3.59%; top: 77.58%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.921974);" role="presentation" dir="ltr">IL EST CONVENU ET ARRÊTÉ CE QUI SUIT :</span><br role="presentation"><span style="left: 5.04%; top: 3.85%; font-size: calc(var(--scale-factor)*18.00px); font-family: sans-serif; transform: scaleX(1.11407);" role="presentation" dir="ltr">C O N T R A T D E B A I L D E S O U S - L O C A T I O N</span><br role="presentation"><span style="left: 18.16%; top: 7.54%; font-size: calc(var(--scale-factor)*18.00px); font-family: sans-serif; transform: scaleX(1.10048);" role="presentation" dir="ltr">D ’ U N</span><span style="left: 28.89%; top: 7.54%; font-size: calc(var(--scale-factor)*18.00px); font-family: sans-serif;" role="presentation" dir="ltr"> </span><span style="left: 31.79%; top: 7.54%; font-size: calc(var(--scale-factor)*18.00px); font-family: sans-serif; transform: scaleX(1.078);" role="presentation" dir="ltr">L O C A L</span><span style="left: 46.1%; top: 7.54%; font-size: calc(var(--scale-factor)*18.00px); font-family: sans-serif;" role="presentation" dir="ltr"> </span><span style="left: 49%; top: 7.54%; font-size: calc(var(--scale-factor)*18.00px); font-family: sans-serif; transform: scaleX(1.10382);" role="presentation" dir="ltr">D ’ H A B I T A T I O N</span><br role="presentation"><span style="left: 3.47%; top: 49.33%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.988768);" dir="ltr" aria-owns="pdfjs_internal_id_158R">Le Bailleur …………….…………….…………….…………….……….……… (indiquer le nom du bailleur) , domicilié</span><br role="presentation"><span style="left: 3.47%; top: 50.99%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.991419);" dir="ltr" aria-owns="pdfjs_internal_id_159R">…………….…………….…………….…………….……….……… (indiquer le domicile du bailleur) a donné en location</span><br role="presentation"><span style="left: 3.47%; top: 52.66%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.993199);" dir="ltr" aria-owns="pdfjs_internal_id_160R">à …………….…………….…………….…………….……….……… (indiquer nom du locataire principal) le logement situé</span><br role="presentation"><span style="left: 3.47%; top: 54.32%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.979908);" dir="ltr" aria-owns="pdfjs_internal_id_161R">…………….…………….…………….…………….……….……… (adresse complète à usage de résidence principale), par un bail</span><br role="presentation"><span style="left: 3.47%; top: 55.98%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.993087);" dir="ltr" aria-owns="pdfjs_internal_id_162R">signé le …………….…………….……… (date de la signature du contrat de bail liant le locataire principal et son bailleur).</span><br role="presentation"><span style="left: 3.47%; top: 59.31%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.985914);" dir="ltr" aria-owns="pdfjs_internal_id_163R">Ce bail a été consenti pour une durée de …………….…………….…………….… à compter du …………….…………… (date de</span><br role="presentation"><span style="left: 3.47%; top: 60.97%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.994243);" dir="ltr" aria-owns="pdfjs_internal_id_164R">début du bail) moyennant un loyer mensuel de …………….…………….…………….……… (indiquer la somme en chiffres et</span><br role="presentation"><span style="left: 3.47%; top: 62.63%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(1.01168);" role="presentation" dir="ltr">en toutes lettres en euro).</span><br role="presentation"><span style="left: 3.47%; top: 65.96%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.97958);" role="presentation" dir="ltr">Le sous-locataire reconnaît avoir connaissance des conditions et charges du bail dont une copie est annexée à la présente</span><br role="presentation"><span style="left: 3.47%; top: 67.62%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(1.01712);" role="presentation" dir="ltr">convention.</span><br role="presentation"><span style="left: 3.47%; top: 70.95%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.989458);" dir="ltr" aria-owns="pdfjs_internal_id_165R">Le propriétaire des locaux loués a autorisé la sous-location par courrier du …………….…………… (jj/mm/aaaa) dont une</span><br role="presentation"><span style="left: 3.47%; top: 72.61%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.986725);" role="presentation" dir="ltr">copie est annexée à la présente convention.</span><br role="presentation"><span style="left: 3.59%; top: 18.84%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(1.0026);" role="presentation" dir="ltr">Nom et Prénom du locataire principal</span><span style="left: 31.44%; top: 18.84%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif;" role="presentation" dir="ltr"> </span><span style="left: 31.82%; top: 18.94%; font-size: calc(var(--scale-factor)*9.00px); font-family: sans-serif;" role="presentation" dir="ltr">:</span><span style="left: 32.19%; top: 18.94%; font-size: calc(var(--scale-factor)*9.00px); font-family: sans-serif;" role="presentation" dir="ltr"> </span><span style="left: 32.5%; top: 18.84%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.978865);" dir="ltr" aria-owns="pdfjs_internal_id_151R">…………….…………….…………….…………….……….…………….……....…....</span><br role="presentation"><span style="left: 3.59%; top: 20.7%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.947715);" role="presentation" dir="ltr">Adresse :</span><span style="left: 10.35%; top: 20.7%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif;" role="presentation" dir="ltr"> </span><span style="left: 10.69%; top: 20.7%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.979083);" dir="ltr" aria-owns="pdfjs_internal_id_152R">…………….…………….…………….…………….……….……….…………….……….....….…………….……….....</span><br role="presentation"><span style="left: 3.59%; top: 22.56%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(1.00694);" role="presentation" dir="ltr">Numéro de téléphone :</span><span style="left: 20.88%; top: 22.56%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif;" role="presentation" dir="ltr"> </span><span style="left: 21.99%; top: 22.56%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.97642);" dir="ltr" aria-owns="pdfjs_internal_id_153R">…………….…………….…………….…………….……….……….…………….……….....…....…....</span><br role="presentation"><span style="left: 3.59%; top: 33.78%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.990649);" role="presentation" dir="ltr">Nom et Prénom du sous-locataire</span><span style="left: 28.5%; top: 33.78%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif;" role="presentation" dir="ltr"> </span><span style="left: 28.88%; top: 33.87%; font-size: calc(var(--scale-factor)*9.00px); font-family: sans-serif;" role="presentation" dir="ltr">:</span><span style="left: 29.26%; top: 33.87%; font-size: calc(var(--scale-factor)*9.00px); font-family: sans-serif;" role="presentation" dir="ltr"> </span><span style="left: 29.56%; top: 33.78%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.98102);" dir="ltr" aria-owns="pdfjs_internal_id_154R">…………….…………….…………….…………….……….…………….……...……...…</span><br role="presentation"><span style="left: 3.59%; top: 35.64%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.947715);" role="presentation" dir="ltr">Adresse :</span><span style="left: 10.35%; top: 35.64%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif;" role="presentation" dir="ltr"> </span><span style="left: 10.69%; top: 35.64%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.979083);" dir="ltr" aria-owns="pdfjs_internal_id_155R">…………….…………….…………….…………….……….……….…………….……….....….…………….……….....</span><br role="presentation"><span style="left: 3.59%; top: 37.5%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(1.00694);" role="presentation" dir="ltr">Numéro de téléphone :</span><span style="left: 20.88%; top: 37.5%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif;" dir="ltr" aria-owns="pdfjs_internal_id_156R"> </span><span style="left: 21.99%; top: 37.5%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.97642);" role="presentation" dir="ltr">…………….…………….…………….…………….……….……….…………….……….....…....…....</span><br role="presentation"><span style="left: 3.47%; top: 80.94%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.9598);" role="presentation" dir="ltr">ARTICLE 1 – OBJET DU BAIL DE SOUS-LOCATION DE LOCAL D’HABITATION</span><br role="presentation"><span style="left: 3.53%; top: 83.91%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.979534);" dir="ltr" aria-owns="pdfjs_internal_id_166R">Le locataire principal sous-loue :</span><br role="presentation"><span style="left: 7.15%; top: 86.37%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.932556);" dir="ltr" aria-owns="pdfjs_internal_id_168R">l’ensemble</span><br role="presentation"><span style="left: 7.15%; top: 89.28%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.96085);" role="presentation" dir="ltr">une partie</span><br role="presentation"><span style="left: 3.56%; top: 95.67%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.976634);" role="presentation" dir="ltr">Page 1/3</span><span style="left: 10.16%; top: 95.67%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif;" role="presentation" dir="ltr"> </span><span style="left: 56.7%; top: 95.08%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.941782);" dir="ltr" aria-owns="pdfjs_internal_id_169R">Paraphes :</span><br role="presentation"><span style="left: 29.18%; top: 11.4%; font-size: calc(var(--scale-factor)*8.00px); font-family: sans-serif; transform: scaleX(0.981025);" role="presentation" dir="ltr">(Loi n°48-1360 du 1er septembre 1948 et loi n°89-462 du 6 juillet 1989)</span><div class="endOfContent"></div></div><div class="annotationLayer" style="width: round(var(--scale-factor) * 595.276px, 1px); height: round(var(--scale-factor) * 841.89px, 1px);" data-main-rotation="0"><section data-annotation-id="151R" style="z-index: 0; left: 32.899%; top: 18.1306%; width: 57.4523%; height: 1.62492%;" class="textWidgetAnnotation"><input type="text" value="" data-element-id="151R" name="untitled1" tabindex="1000" aria-required="false" style="font-size: calc(8.64px * var(--scale-factor)); color: rgb(0, 0, 0); text-align: left; background-color: transparent;" id="pdfjs_internal_id_151R"></section><section data-annotation-id="152R" style="z-index: 1; left: 11.2486%; top: 20.0976%; width: 78.9819%; height: 1.53939%;" class="textWidgetAnnotation"><input type="text" value="" data-element-id="152R" name="untitled3" tabindex="1000" aria-required="false" style="font-size: calc(8.1px * var(--scale-factor)); color: rgb(0, 0, 0); text-align: left; background-color: transparent;" id="pdfjs_internal_id_152R"></section><section data-annotation-id="153R" style="z-index: 2; left: 22.2552%; top: 21.9791%; width: 67.9752%; height: 1.71044%;" class="textWidgetAnnotation"><input type="text" value="" data-element-id="153R" name="untitled4" tabindex="1000" aria-required="false" style="font-size: calc(8.64px * var(--scale-factor)); color: rgb(0, 0, 0); text-align: left; background-color: transparent;" id="pdfjs_internal_id_153R"></section><section data-annotation-id="154R" style="z-index: 3; left: 29.9962%; top: 33.097%; width: 59.8714%; height: 1.71044%;" class="textWidgetAnnotation"><input type="text" value="" data-element-id="154R" name="untitled5" tabindex="1000" aria-required="false" style="font-size: calc(8.64px * var(--scale-factor)); color: rgb(0, 0, 0); text-align: left; background-color: transparent;" id="pdfjs_internal_id_154R"></section><section data-annotation-id="155R" style="z-index: 4; left: 11.6114%; top: 35.064%; width: 78.3771%; height: 1.53939%;" class="textWidgetAnnotation"><input type="text" value="" data-element-id="155R" name="untitled6" tabindex="1000" aria-required="false" style="font-size: calc(8.1px * var(--scale-factor)); color: rgb(0, 0, 0); text-align: left; background-color: transparent;" id="pdfjs_internal_id_155R"></section><section data-annotation-id="156R" style="z-index: 5; left: 22.0133%; top: 36.8599%; width: 67.6123%; height: 1.62492%;" class="textWidgetAnnotation"><input type="text" value="" data-element-id="156R" name="untitled7" tabindex="1000" aria-required="false" style="font-size: calc(8.64px * var(--scale-factor)); color: rgb(0, 0, 0); text-align: left; background-color: transparent;" id="pdfjs_internal_id_156R"></section><section data-annotation-id="157R" style="z-index: 6; left: 12.2162%; top: 48.4909%; width: 44.3895%; height: 1.79596%;" class="textWidgetAnnotation"><input type="text" value="" data-element-id="157R" name="untitled8" tabindex="1000" aria-required="false" style="font-size: calc(8.64px * var(--scale-factor)); color: rgb(0, 0, 0); text-align: left; background-color: transparent;" id="pdfjs_internal_id_157R"></section><section data-annotation-id="158R" style="z-index: 7; left: 3.87047%; top: 50.5434%; width: 44.8733%; height: 1.45387%;" class="textWidgetAnnotation"><input type="text" value="" data-element-id="158R" name="untitled9" tabindex="1000" aria-required="false" style="font-size: calc(7.6px * var(--scale-factor)); color: rgb(0, 0, 0); text-align: left; background-color: transparent;" id="pdfjs_internal_id_158R"></section><section data-annotation-id="159R" style="z-index: 8; left: 5.08%; top: 52.2539%; width: 44.0266%; height: 1.45387%;" class="textWidgetAnnotation"><input type="text" value="" data-element-id="159R" name="untitled10" tabindex="1000" aria-required="false" style="font-size: calc(7.6px * var(--scale-factor)); color: rgb(0, 0, 0); text-align: left; background-color: transparent;" id="pdfjs_internal_id_159R"></section><section data-annotation-id="160R" style="z-index: 9; left: 3.99143%; top: 53.9643%; width: 44.7524%; height: 1.28283%;" class="textWidgetAnnotation"><input type="text" value="" data-element-id="160R" name="untitled11" tabindex="1000" aria-required="false" style="font-size: calc(6.5px * var(--scale-factor)); color: rgb(0, 0, 0); text-align: left; background-color: transparent;" id="pdfjs_internal_id_160R"></section><section data-annotation-id="161R" style="z-index: 10; left: 10.4019%; top: 55.5037%; width: 21.2876%; height: 1.45387%;" class="textWidgetAnnotation"><input type="text" value="" data-element-id="161R" name="untitled12" tabindex="1000" aria-required="false" style="font-size: calc(7.6px * var(--scale-factor)); color: rgb(0, 0, 0); text-align: left; background-color: transparent;" id="pdfjs_internal_id_161R"></section><section data-annotation-id="162R" style="z-index: 11; left: 34.5924%; top: 58.7535%; width: 26.7305%; height: 1.53939%;" class="textWidgetAnnotation"><input type="text" value="" data-element-id="162R" name="untitled13" tabindex="1000" aria-required="false" style="font-size: calc(8.1px * var(--scale-factor)); color: rgb(0, 0, 0); text-align: left; background-color: transparent;" id="pdfjs_internal_id_162R"></section><section data-annotation-id="163R" style="z-index: 12; left: 73.418%; top: 58.5825%; width: 15.9657%; height: 1.79596%;" class="textWidgetAnnotation"><input type="text" value="" data-element-id="163R" name="untitled14" tabindex="1000" aria-required="false" style="font-size: calc(8.64px * var(--scale-factor)); color: rgb(0, 0, 0); text-align: left; background-color: transparent;" id="pdfjs_internal_id_163R"></section><section data-annotation-id="164R" style="z-index: 13; left: 39.0676%; top: 60.5495%; width: 30.8428%; height: 1.45387%;" class="textWidgetAnnotation"><input type="text" value="" data-element-id="164R" name="untitled15" tabindex="1000" aria-required="false" style="font-size: calc(7.6px * var(--scale-factor)); color: rgb(0, 0, 0); text-align: left; background-color: transparent;" id="pdfjs_internal_id_164R"></section><section data-annotation-id="165R" style="z-index: 14; left: 59.2666%; top: 70.1279%; width: 15.9657%; height: 1.88148%;" class="textWidgetAnnotation"><input type="text" value="" data-element-id="165R" name="untitled16" tabindex="1000" aria-required="false" style="font-size: calc(8.64px * var(--scale-factor)); color: rgb(0, 0, 0); text-align: left; background-color: transparent;" id="pdfjs_internal_id_165R"></section><section data-annotation-id="166R" style="z-index: 15; left: 3.74952%; top: 86.3771%; width: 2.05619%; height: 1.19731%;" class="buttonWidgetAnnotation checkBox"><input data-element-id="166R" aria-required="false" type="checkbox" name="untitled17" exportvalue="Yes" tabindex="1000" style="background-color: transparent;" id="pdfjs_internal_id_166R"></section><section data-annotation-id="168R" style="z-index: 16; left: 3.87047%; top: 89.2848%; width: 1.93524%; height: 1.28283%;" class="buttonWidgetAnnotation checkBox"><input data-element-id="168R" aria-required="false" type="checkbox" name="untitled18" exportvalue="Yes" tabindex="1000" style="background-color: transparent;" id="pdfjs_internal_id_168R"></section><section data-annotation-id="169R" style="z-index: 17; left: 65.919%; top: 93.5609%; width: 30.2381%; height: 4.36162%;" class="textWidgetAnnotation"><textarea data-element-id="169R" name="untitled19" tabindex="1000" aria-required="false" style="font-size: calc(8.6px * var(--scale-factor)); color: rgb(0, 0, 0); text-align: left; background-color: transparent;" id="pdfjs_internal_id_169R"></textarea></section></div><div class="annotationEditorLayer disabled" hidden="" dir="ltr" tabindex="0" style="width: round(var(--scale-factor) * 595.276px, 1px); height: round(var(--scale-factor) * 841.89px, 1px);" data-main-rotation="0"></div></div><div class="page" data-page-number="2" role="region" data-l10n-id="pdfjs-page-landmark" data-l10n-args="{&quot;page&quot;:2}" style="width: round(var(--scale-factor) * 595.276px, 1px); height: round(var(--scale-factor) * 841.89px, 1px);" aria-label="Page 2" data-loaded="true"><div class="canvasWrapper"><canvas role="presentation" width="1491" height="2106" style="width: 994px; height: 1404px;"></canvas></div><div tabindex="0" class="textLayer" style="width: round(var(--scale-factor) * 595.276px, 1px); height: round(var(--scale-factor) * 841.89px, 1px);" data-main-rotation="0"><span style="left: 3.59%; top: 9.83%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.991045);" role="presentation" dir="ltr">………………………………</span><span style="left: 23.67%; top: 9.83%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif;" role="presentation" dir="ltr"> </span><span style="left: 23.97%; top: 9.83%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.991045);" role="presentation" dir="ltr">………………</span><span style="left: 34.01%; top: 9.83%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif;" role="presentation" dir="ltr"> </span><span style="left: 34.32%; top: 9.83%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.991045);" role="presentation" dir="ltr">………………</span><span style="left: 44.36%; top: 9.83%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif;" dir="ltr" aria-owns="pdfjs_internal_id_172R"> </span><span style="left: 44.66%; top: 9.83%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.991045);" role="presentation" dir="ltr">………………</span><span style="left: 54.7%; top: 9.83%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif;" role="presentation" dir="ltr"> </span><span style="left: 55.01%; top: 9.83%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.991045);" role="presentation" dir="ltr">…………………</span><span style="left: 66.72%; top: 9.83%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif;" role="presentation" dir="ltr"> </span><span style="left: 67.03%; top: 9.83%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.991045);" role="presentation" dir="ltr">………………</span><span style="left: 77.06%; top: 9.83%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif;" role="presentation" dir="ltr"> </span><span style="left: 77.37%; top: 9.83%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.980118);" role="presentation" dir="ltr">…………………………....</span><br role="presentation"><span style="left: 3.59%; top: 14.91%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.991045);" role="presentation" dir="ltr">………………………………</span><span style="left: 23.67%; top: 14.91%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif;" role="presentation" dir="ltr"> </span><span style="left: 23.97%; top: 14.91%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.991045);" role="presentation" dir="ltr">………………</span><span style="left: 34.01%; top: 14.91%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif;" role="presentation" dir="ltr"> </span><span style="left: 34.32%; top: 14.91%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.991045);" role="presentation" dir="ltr">………………</span><span style="left: 44.36%; top: 14.91%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif;" role="presentation" dir="ltr"> </span><span style="left: 44.66%; top: 14.91%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.991045);" dir="ltr" aria-owns="pdfjs_internal_id_174R">………………</span><span style="left: 54.7%; top: 14.91%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif;" role="presentation" dir="ltr"> </span><span style="left: 55.01%; top: 14.91%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.991045);" role="presentation" dir="ltr">…………………</span><span style="left: 66.72%; top: 14.91%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif;" role="presentation" dir="ltr"> </span><span style="left: 67.03%; top: 14.91%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.991045);" role="presentation" dir="ltr">………………</span><span style="left: 77.06%; top: 14.91%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif;" role="presentation" dir="ltr"> </span><span style="left: 77.37%; top: 14.91%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.980118);" role="presentation" dir="ltr">…………………………....</span><br role="presentation"><span style="left: 3.59%; top: 12.32%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.991045);" role="presentation" dir="ltr">………………………………</span><span style="left: 23.67%; top: 12.32%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif;" role="presentation" dir="ltr"> </span><span style="left: 23.97%; top: 12.32%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.991045);" role="presentation" dir="ltr">………………</span><span style="left: 34.01%; top: 12.32%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif;" role="presentation" dir="ltr"> </span><span style="left: 34.32%; top: 12.32%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.991045);" role="presentation" dir="ltr">………………</span><span style="left: 44.36%; top: 12.32%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif;" role="presentation" dir="ltr"> </span><span style="left: 44.66%; top: 12.32%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.991045);" dir="ltr" aria-owns="pdfjs_internal_id_173R">………………</span><span style="left: 54.7%; top: 12.32%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif;" role="presentation" dir="ltr"> </span><span style="left: 55.01%; top: 12.32%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.991045);" role="presentation" dir="ltr">…………………</span><span style="left: 66.72%; top: 12.32%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif;" role="presentation" dir="ltr"> </span><span style="left: 67.03%; top: 12.32%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.991045);" role="presentation" dir="ltr">………………</span><span style="left: 77.06%; top: 12.32%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif;" role="presentation" dir="ltr"> </span><span style="left: 77.37%; top: 12.32%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.980118);" role="presentation" dir="ltr">…………………………....</span><br role="presentation"><span style="left: 3.75%; top: 7.42%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.996387);" role="presentation" dir="ltr">Comprenant :</span><br role="presentation"><span style="left: 3.75%; top: 17.69%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.993529);" dir="ltr" aria-owns="pdfjs_internal_id_175R">Le logement présente une surface de ……………………m</span><span style="left: 46.83%; top: 17.7%; font-size: calc(var(--scale-factor)*5.83px); font-family: sans-serif;" role="presentation" dir="ltr">2</span><span style="left: 47.38%; top: 17.7%; font-size: calc(var(--scale-factor)*5.83px); font-family: sans-serif;" role="presentation" dir="ltr"> </span><span style="left: 47.76%; top: 17.69%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.980941);" dir="ltr" aria-owns="pdfjs_internal_id_177R">et sera partagé avec ……………………personnes.</span><br role="presentation"><span style="left: 3.5%; top: 21.9%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.942614);" role="presentation" dir="ltr">ARTICLE 2 – DURÉE DU BAIL</span><br role="presentation"><span style="left: 3.5%; top: 35.27%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.923817);" role="presentation" dir="ltr">ARTICLE 3 – LOYER</span><br role="presentation"><span style="left: 3.5%; top: 51.62%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.944138);" dir="ltr" aria-owns="pdfjs_internal_id_183R">ARTICLE 4 – DESTINATION DES LIEUX</span><br role="presentation"><span style="left: 3.5%; top: 64.9%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.932401);" role="presentation" dir="ltr">ARTICLE 5 – ÉTAT DES LIEUX</span><br role="presentation"><span style="left: 3.5%; top: 83.59%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.924497);" role="presentation" dir="ltr">ARTICLE 6 – ASSURANCES</span><br role="presentation"><span style="left: 3.56%; top: 24.87%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.989111);" dir="ltr" aria-owns="pdfjs_internal_id_176R pdfjs_internal_id_178R">Le présent contrat de sous-location est conclu pour une durée de ……………… années et ………………mois, qui ne pourra,</span><br role="presentation"><span style="left: 3.56%; top: 26.54%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.99751);" role="presentation" dir="ltr">en toute hypothèse, excéder celle du bail principal.</span><br role="presentation"><span style="left: 3.56%; top: 29.86%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.992566);" role="presentation" dir="ltr">Chacune des parties aura la faculté d’y mettre fin à tout moment sans indemnité, par lettre recommandée avec accusé de</span><br role="presentation"><span style="left: 3.56%; top: 31.53%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.983625);" dir="ltr" aria-owns="pdfjs_internal_id_179R">réception, sous réserve de respecter un préavis de ………………mois.</span><br role="presentation"><span style="left: 3.56%; top: 38.25%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.989872);" dir="ltr" aria-owns="pdfjs_internal_id_180R">La présente sous-location est consentie et acceptée moyennant un loyer mensuel de …………………… (indiquer la</span><br role="presentation"><span style="left: 3.56%; top: 39.91%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.991731);" dir="ltr" aria-owns="pdfjs_internal_id_181R">somme en chiffres et en toutes lettres en euro) payable avant le …………………… (notez le jour du mois) de chaque mois</span><br role="presentation"><span style="left: 3.56%; top: 41.57%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.997443);" role="presentation" dir="ltr">au domicile du locataire principal.</span><br role="presentation"><span style="left: 3.56%; top: 44.9%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.997724);" role="presentation" dir="ltr">Le montant du loyer fait l’objet d’une indexation identique à celle du loyer principal. Le sous-locataire remboursera au loca-</span><br role="presentation"><span style="left: 3.56%; top: 46.56%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.990635);" role="presentation" dir="ltr">taire principal sur justificatifs les charges, taxes, et impôts lui incombant au prorata de la surface occupée. Il s’oblige égale</span><span style="left: 93.83%; top: 46.56%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif;" role="presentation" dir="ltr">-</span><br role="presentation"><span style="left: 3.56%; top: 48.22%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(1.01515);" role="presentation" dir="ltr">ment à acquitter toute consommation personnelle (eau, gaz, électricité, téléphone) et tout abonnement y afférent.</span><br role="presentation"><span style="left: 3.56%; top: 68.23%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.989665);" role="presentation" dir="ltr">Un état des lieux sera dressé contradictoirement entre les parties lors de l’entrée dans les lieux. Il demeurera annexé au</span><br role="presentation"><span style="left: 3.56%; top: 69.9%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(1.02948);" role="presentation" dir="ltr">présent contrat.</span><br role="presentation"><span style="left: 3.56%; top: 73.22%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.984086);" role="presentation" dir="ltr">Le sous-locataire s’engage à prendre les locaux dans l’état où ils se trouvent lors de l’entrée dans les lieux, à les entretenir en</span><br role="presentation"><span style="left: 3.56%; top: 74.89%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.992659);" role="presentation" dir="ltr">bon état de réparations locatives et de menu entretien pendant la durée du bail, et à les rendre dans l’état où il les a reçus à</span><br role="presentation"><span style="left: 3.56%; top: 76.55%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(1.00348);" role="presentation" dir="ltr">l’issue du présent contrat.</span><br role="presentation"><span style="left: 3.56%; top: 79.87%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(1.00032);" role="presentation" dir="ltr">Le sous-locataire ne pourra entreprendre aucune transformation sans le consentement écrit du locataire et du bailleur.</span><br role="presentation"><span style="left: 3.56%; top: 86.92%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.981898);" role="presentation" dir="ltr">Le sous-locataire s’oblige à souscrire une police d’assurance garantissant les locaux loués pendant toute la durée du bail</span><br role="presentation"><span style="left: 3.56%; top: 88.58%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.986831);" role="presentation" dir="ltr">contre les risques locatifs habituels et contre les risques pouvant naître de l’exercice de son activité associative. La police</span><br role="presentation"><span style="left: 3.56%; top: 90.25%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.991425);" role="presentation" dir="ltr">souscrite devra comporter une clause de renonciation à tout recours contre le loueur et ses assureurs.</span><br role="presentation"><span style="left: 7.06%; top: 54.59%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.953193);" dir="ltr" aria-owns="pdfjs_internal_id_184R">Le logement est destiné exclusivement à l’habitation principale du locataire</span><br role="presentation"><span style="left: 7.06%; top: 57.41%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.943414);" role="presentation" dir="ltr">Le locataire est autorisé à exercer son activité professionnelle, à l’exclusion, cependant, de toute activité commerciale,</span><br role="presentation"><span style="left: 7.06%; top: 59.43%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.930863);" role="presentation" dir="ltr">artisanale ou industrielle. Le sous-locataire s’engage à n’exercer dans les lieux loués que l’activité suivante :</span><br role="presentation"><span style="left: 7.06%; top: 62.04%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.991045);" dir="ltr" aria-owns="pdfjs_internal_id_182R">…………………………………………………………………………………………………………………………………</span><br role="presentation"><span style="left: 3.59%; top: 95.67%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.976634);" role="presentation" dir="ltr">Page 2/3</span><span style="left: 10.19%; top: 95.67%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif;" role="presentation" dir="ltr"> </span><span style="left: 56.73%; top: 95.08%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.941782);" dir="ltr" aria-owns="pdfjs_internal_id_170R">Paraphes :</span><br role="presentation"><span style="left: 3.53%; top: 4.23%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.977134);" dir="ltr" aria-owns="pdfjs_internal_id_171R">des locaux situés ……….…………….…………….…………….……….……….…………….……….....….…………….………....</span><div class="endOfContent"></div></div><div class="annotationLayer" style="width: round(var(--scale-factor) * 595.276px, 1px); height: round(var(--scale-factor) * 841.89px, 1px);" data-main-rotation="0"><section data-annotation-id="171R" style="z-index: 1; left: 17.2962%; top: 3.42087%; width: 75.1114%; height: 1.71044%;" class="textWidgetAnnotation"><input type="text" value="" data-element-id="171R" name="untitled22" tabindex="1000" aria-required="false" style="font-size: calc(8.64px * var(--scale-factor)); color: rgb(0, 0, 0); text-align: left; background-color: transparent;" id="pdfjs_internal_id_171R"></section><section data-annotation-id="172R" style="z-index: 2; left: 3.99143%; top: 9.06532%; width: 91.319%; height: 1.79596%;" class="textWidgetAnnotation"><input type="text" value="" data-element-id="172R" name="untitled23" tabindex="1000" aria-required="false" style="font-size: calc(8.64px * var(--scale-factor)); color: rgb(0, 0, 0); text-align: left; background-color: transparent;" id="pdfjs_internal_id_172R"></section><section data-annotation-id="173R" style="z-index: 3; left: 4.23333%; top: 11.2034%; width: 91.198%; height: 2.13805%;" class="textWidgetAnnotation"><input type="text" value="" data-element-id="173R" name="untitled24" tabindex="1000" aria-required="false" style="font-size: calc(8.64px * var(--scale-factor)); color: rgb(0, 0, 0); text-align: left; background-color: transparent;" id="pdfjs_internal_id_173R"></section><section data-annotation-id="174R" style="z-index: 4; left: 4.59619%; top: 13.6835%; width: 90.5933%; height: 2.22357%;" class="textWidgetAnnotation"><input type="text" value="" data-element-id="174R" name="untitled25" tabindex="1000" aria-required="false" style="font-size: calc(8.64px * var(--scale-factor)); color: rgb(0, 0, 0); text-align: left; background-color: transparent;" id="pdfjs_internal_id_174R"></section><section data-annotation-id="175R" style="z-index: 5; left: 32.6571%; top: 16.7623%; width: 11.8533%; height: 1.967%;" class="textWidgetAnnotation"><input type="text" value="" data-element-id="175R" name="untitled26" tabindex="1000" aria-required="false" style="font-size: calc(8.64px * var(--scale-factor)); color: rgb(0, 0, 0); text-align: left; background-color: transparent;" id="pdfjs_internal_id_175R"></section><section data-annotation-id="177R" style="z-index: 7; left: 64.3466%; top: 16.8478%; width: 11.3695%; height: 1.967%;" class="textWidgetAnnotation"><input type="text" value="" data-element-id="177R" name="untitled29" tabindex="1000" aria-required="false" style="font-size: calc(8.64px * var(--scale-factor)); color: rgb(0, 0, 0); text-align: left; background-color: transparent;" id="pdfjs_internal_id_177R"></section><section data-annotation-id="176R" style="z-index: 6; left: 53.0981%; top: 24.1172%; width: 8.34571%; height: 1.967%;" class="textWidgetAnnotation"><input type="text" value="" data-element-id="176R" name="untitled27" tabindex="1000" aria-required="false" style="font-size: calc(8.64px * var(--scale-factor)); color: rgb(0, 0, 0); text-align: left; background-color: transparent;" id="pdfjs_internal_id_176R"></section><section data-annotation-id="178R" style="z-index: 8; left: 71.3619%; top: 24.1172%; width: 8.10381%; height: 1.79596%;" class="textWidgetAnnotation"><input type="text" value="" data-element-id="178R" name="untitled30" tabindex="1000" aria-required="false" style="font-size: calc(8.64px * var(--scale-factor)); color: rgb(0, 0, 0); text-align: left; background-color: transparent;" id="pdfjs_internal_id_178R"></section><section data-annotation-id="179R" style="z-index: 9; left: 41.8495%; top: 31.13%; width: 9.07142%; height: 1.45387%;" class="textWidgetAnnotation"><input type="text" value="" data-element-id="179R" name="untitled31" tabindex="1000" aria-required="false" style="font-size: calc(7.6px * var(--scale-factor)); color: rgb(0, 0, 0); text-align: left; background-color: transparent;" id="pdfjs_internal_id_179R"></section><section data-annotation-id="180R" style="z-index: 10; left: 68.0961%; top: 37.6296%; width: 11.2486%; height: 1.53939%;" class="textWidgetAnnotation"><input type="text" value="" data-element-id="180R" name="untitled32" tabindex="1000" aria-required="false" style="font-size: calc(8.1px * var(--scale-factor)); color: rgb(0, 0, 0); text-align: left; background-color: transparent;" id="pdfjs_internal_id_180R"></section><section data-annotation-id="181R" style="z-index: 11; left: 51.8885%; top: 39.5966%; width: 12.4581%; height: 1.36835%;" class="textWidgetAnnotation"><input type="text" value="" data-element-id="181R" name="untitled33" tabindex="1000" aria-required="false" style="font-size: calc(7.1px * var(--scale-factor)); color: rgb(0, 0, 0); text-align: left; background-color: transparent;" id="pdfjs_internal_id_181R"></section><section data-annotation-id="183R" style="z-index: 13; left: 3.87047%; top: 54.563%; width: 1.93524%; height: 1.19731%;" class="buttonWidgetAnnotation checkBox"><input data-element-id="183R" aria-required="false" type="checkbox" name="untitled35" exportvalue="Yes" tabindex="1000" style="background-color: transparent;" id="pdfjs_internal_id_183R"></section><section data-annotation-id="184R" style="z-index: 14; left: 3.74952%; top: 57.3852%; width: 2.17714%; height: 1.28283%;" class="buttonWidgetAnnotation checkBox"><input data-element-id="184R" aria-required="false" type="checkbox" name="untitled36" exportvalue="Yes" tabindex="1000" style="background-color: transparent;" id="pdfjs_internal_id_184R"></section><section data-annotation-id="182R" style="z-index: 12; left: 8.46666%; top: 61.1481%; width: 79.9495%; height: 1.967%;" class="textWidgetAnnotation"><input type="text" value="" data-element-id="182R" name="untitled34" tabindex="1000" aria-required="false" style="font-size: calc(8.64px * var(--scale-factor)); color: rgb(0, 0, 0); text-align: left; background-color: transparent;" id="pdfjs_internal_id_182R"></section><section data-annotation-id="170R" style="z-index: 0; left: 65.7981%; top: 93.6464%; width: 30.359%; height: 4.19057%;" class="textWidgetAnnotation"><textarea data-element-id="170R" name="untitled21" tabindex="1000" aria-required="false" style="font-size: calc(8.2px * var(--scale-factor)); color: rgb(0, 0, 0); text-align: left; background-color: transparent;" id="pdfjs_internal_id_170R"></textarea></section></div><div class="annotationEditorLayer disabled" hidden="" dir="ltr" tabindex="0" style="width: round(var(--scale-factor) * 595.276px, 1px); height: round(var(--scale-factor) * 841.89px, 1px);" data-main-rotation="0"></div></div><div class="page" data-page-number="3" role="region" data-l10n-id="pdfjs-page-landmark" data-l10n-args="{&quot;page&quot;:3}" style="width: round(var(--scale-factor) * 595.276px, 1px); height: round(var(--scale-factor) * 841.89px, 1px);" aria-label="Page 3"></div></div>
+        </div>
+      </div> <!-- mainContainer -->
+
+      <div id="dialogContainer">
+        <dialog id="passwordDialog">
+          <div class="row">
+            <label for="password" id="passwordText" data-l10n-id="pdfjs-password-label">Veuillez saisir le mot de passe pour ouvrir ce fichier PDF.</label>
+          </div>
+          <div class="row">
+            <input type="password" id="password" class="toolbarField">
+          </div>
+          <div class="buttonRow">
+            <button id="passwordCancel" class="dialogButton"><span data-l10n-id="pdfjs-password-cancel-button">Annuler</span></button>
+            <button id="passwordSubmit" class="dialogButton"><span data-l10n-id="pdfjs-password-ok-button">OK</span></button>
+          </div>
+        </dialog>
+        <dialog id="documentPropertiesDialog">
+          <div class="row">
+            <span id="fileNameLabel" data-l10n-id="pdfjs-document-properties-file-name">Nom du fichier&nbsp;:</span>
+            <p id="fileNameField" aria-labelledby="fileNameLabel">-</p>
+          </div>
+          <div class="row">
+            <span id="fileSizeLabel" data-l10n-id="pdfjs-document-properties-file-size">Taille du fichier&nbsp;:</span>
+            <p id="fileSizeField" aria-labelledby="fileSizeLabel">-</p>
+          </div>
+          <div class="separator"></div>
+          <div class="row">
+            <span id="titleLabel" data-l10n-id="pdfjs-document-properties-title">Titre&nbsp;:</span>
+            <p id="titleField" aria-labelledby="titleLabel">-</p>
+          </div>
+          <div class="row">
+            <span id="authorLabel" data-l10n-id="pdfjs-document-properties-author">Auteur&nbsp;:</span>
+            <p id="authorField" aria-labelledby="authorLabel">-</p>
+          </div>
+          <div class="row">
+            <span id="subjectLabel" data-l10n-id="pdfjs-document-properties-subject">Sujet&nbsp;:</span>
+            <p id="subjectField" aria-labelledby="subjectLabel">-</p>
+          </div>
+          <div class="row">
+            <span id="keywordsLabel" data-l10n-id="pdfjs-document-properties-keywords">Mots-clés&nbsp;:</span>
+            <p id="keywordsField" aria-labelledby="keywordsLabel">-</p>
+          </div>
+          <div class="row">
+            <span id="creationDateLabel" data-l10n-id="pdfjs-document-properties-creation-date">Date de création&nbsp;:</span>
+            <p id="creationDateField" aria-labelledby="creationDateLabel">-</p>
+          </div>
+          <div class="row">
+            <span id="modificationDateLabel" data-l10n-id="pdfjs-document-properties-modification-date">Modifié le&nbsp;:</span>
+            <p id="modificationDateField" aria-labelledby="modificationDateLabel">-</p>
+          </div>
+          <div class="row">
+            <span id="creatorLabel" data-l10n-id="pdfjs-document-properties-creator">Créé par&nbsp;:</span>
+            <p id="creatorField" aria-labelledby="creatorLabel">-</p>
+          </div>
+          <div class="separator"></div>
+          <div class="row">
+            <span id="producerLabel" data-l10n-id="pdfjs-document-properties-producer">Outil de conversion PDF&nbsp;:</span>
+            <p id="producerField" aria-labelledby="producerLabel">-</p>
+          </div>
+          <div class="row">
+            <span id="versionLabel" data-l10n-id="pdfjs-document-properties-version">Version PDF&nbsp;:</span>
+            <p id="versionField" aria-labelledby="versionLabel">-</p>
+          </div>
+          <div class="row">
+            <span id="pageCountLabel" data-l10n-id="pdfjs-document-properties-page-count">Nombre de pages&nbsp;:</span>
+            <p id="pageCountField" aria-labelledby="pageCountLabel">-</p>
+          </div>
+          <div class="row">
+            <span id="pageSizeLabel" data-l10n-id="pdfjs-document-properties-page-size">Taille de la page&nbsp;:</span>
+            <p id="pageSizeField" aria-labelledby="pageSizeLabel">-</p>
+          </div>
+          <div class="separator"></div>
+          <div class="row">
+            <span id="linearizedLabel" data-l10n-id="pdfjs-document-properties-linearized">Affichage rapide des pages web&nbsp;:</span>
+            <p id="linearizedField" aria-labelledby="linearizedLabel">-</p>
+          </div>
+          <div class="buttonRow">
+            <button id="documentPropertiesClose" class="dialogButton"><span data-l10n-id="pdfjs-document-properties-close-button">Fermer</span></button>
+          </div>
+        </dialog>
+        <dialog id="altTextDialog" aria-labelledby="dialogLabel" aria-describedby="dialogDescription">
+          <div id="altTextContainer">
+            <div id="overallDescription">
+              <span id="dialogLabel" data-l10n-id="pdfjs-editor-alt-text-dialog-label" class="title">Sélectionnez une option</span>
+              <span id="dialogDescription" data-l10n-id="pdfjs-editor-alt-text-dialog-description">Le texte alternatif est utile lorsque des personnes ne peuvent pas voir l’image ou que l’image ne se charge pas.</span>
+            </div>
+            <div id="addDescription">
+              <div class="radio">
+                <div class="radioButton">
+                  <input type="radio" id="descriptionButton" name="altTextOption" tabindex="0" aria-describedby="descriptionAreaLabel" checked="">
+                  <label for="descriptionButton" data-l10n-id="pdfjs-editor-alt-text-add-description-label">Ajouter une description</label>
+                </div>
+                <div class="radioLabel">
+                  <span id="descriptionAreaLabel" data-l10n-id="pdfjs-editor-alt-text-add-description-description">Il est conseillé de rédiger une ou deux phrases décrivant le sujet, le cadre ou les actions.</span>
+                </div>
+              </div>
+              <div class="descriptionArea">
+                <textarea id="descriptionTextarea" placeholder="Par exemple, «&nbsp;Un jeune homme est assis à une table pour prendre un repas&nbsp;»" aria-labelledby="descriptionAreaLabel" data-l10n-id="pdfjs-editor-alt-text-textarea" tabindex="0"></textarea>
+              </div>
+            </div>
+            <div id="markAsDecorative">
+              <div class="radio">
+                <div class="radioButton">
+                  <input type="radio" id="decorativeButton" name="altTextOption" aria-describedby="decorativeLabel">
+                  <label for="decorativeButton" data-l10n-id="pdfjs-editor-alt-text-mark-decorative-label">Marquer comme décorative</label>
+                </div>
+                <div class="radioLabel">
+                  <span id="decorativeLabel" data-l10n-id="pdfjs-editor-alt-text-mark-decorative-description">Cette option est utilisée pour les images décoratives, comme les bordures ou les filigranes.</span>
+                </div>
+              </div>
+            </div>
+            <div id="buttons">
+              <button id="altTextCancel" tabindex="0"><span data-l10n-id="pdfjs-editor-alt-text-cancel-button">Annuler</span></button>
+              <button id="altTextSave" tabindex="0"><span data-l10n-id="pdfjs-editor-alt-text-save-button">Enregistrer</span></button>
+            </div>
+          </div>
+        </dialog>
+      </div>  <!-- dialogContainer -->
+
+    </div> <!-- outerContainer -->
+    <div id="printContainer"></div>
+  
+
+<canvas class="hiddenCanvasElement" height="0" width="0"></canvas></body>
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Contrat de sous-location - contrat-bail-sous-location.pdf</title>
+
+<!-- This snippet is used in the Firefox extension (included from viewer.html) -->
+<script src="resource://pdf.js/build/pdf.mjs" type="module"></script>
+
+  <link rel="stylesheet" href="resource://pdf.js/web/viewer.css">
+  <link rel="localization" href="toolkit/pdfviewer/viewer.ftl">
+
+<!--  <script src="resource://pdf.js/web/viewer.mjs" type="module"></script>	-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.13.145/pdf.min.js"></script>
+
+  
+  
+    <div id="outerContainer">
+
+      <div id="sidebarContainer">
+        <div id="toolbarSidebar">
+          <div id="toolbarSidebarLeft">
+            <div id="sidebarViewButtons" class="splitToolbarButton toggled" role="radiogroup">
+              <button id="viewThumbnail" class="toolbarButton toggled" title="Afficher les vignettes" tabindex="2" data-l10n-id="pdfjs-thumbs-button" role="radio" aria-checked="true" aria-controls="thumbnailView">
+                 <span data-l10n-id="pdfjs-thumbs-button-label">Vignettes</span>
+              </button>
+              <button id="viewOutline" class="toolbarButton" title="Afficher les signets du document (double-cliquer pour développer/réduire tous les éléments)" tabindex="3" data-l10n-id="pdfjs-document-outline-button" role="radio" aria-checked="false" aria-controls="outlineView" disabled="">
+                 <span data-l10n-id="pdfjs-document-outline-button-label">Signets du document</span>
+              </button>
+              <button id="viewAttachments" class="toolbarButton" title="Afficher les pièces jointes" tabindex="4" data-l10n-id="pdfjs-attachments-button" role="radio" aria-checked="false" aria-controls="attachmentsView" disabled="">
+                 <span data-l10n-id="pdfjs-attachments-button-label">Pièces jointes</span>
+              </button>
+              <button id="viewLayers" class="toolbarButton" title="Afficher les calques (double-cliquer pour réinitialiser tous les calques à l’état par défaut)" tabindex="5" data-l10n-id="pdfjs-layers-button" role="radio" aria-checked="false" aria-controls="layersView" disabled="">
+                 <span data-l10n-id="pdfjs-layers-button-label">Calques</span>
+              </button>
+            </div>
+          </div>
+
+          <div id="toolbarSidebarRight">
+            <div id="outlineOptionsContainer">
+              <div class="verticalToolbarSeparator"></div>
+
+              <button id="currentOutlineItem" class="toolbarButton" disabled="" title="Trouver l’élément de plan actuel" tabindex="6" data-l10n-id="pdfjs-current-outline-item-button">
+                <span data-l10n-id="pdfjs-current-outline-item-button-label">Élément de plan actuel</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div id="sidebarContent">
+          <div id="thumbnailView"><a href="#page=1" data-l10n-id="pdfjs-thumb-page-title" data-l10n-args="{&quot;page&quot;:1}" title="Page 1"><div class="thumbnail selected" data-page-number="1" style="--thumbnail-width: 98px; --thumbnail-height: 138px;"><div class="thumbnailImage"></div></div></a><a href="#page=2" data-l10n-id="pdfjs-thumb-page-title" data-l10n-args="{&quot;page&quot;:2}" title="Page 2"><div class="thumbnail" data-page-number="2" style="--thumbnail-width: 98px; --thumbnail-height: 138px;"><div class="thumbnailImage"></div></div></a><a href="#page=3" data-l10n-id="pdfjs-thumb-page-title" data-l10n-args="{&quot;page&quot;:3}" title="Page 3"><div class="thumbnail" data-page-number="3" style="--thumbnail-width: 98px; --thumbnail-height: 138px;"><div class="thumbnailImage"></div></div></a></div>
+          <div id="outlineView" class="hidden"></div>
+          <div id="attachmentsView" class="hidden"></div>
+          <div id="layersView" class="hidden"></div>
+        </div>
+        <div id="sidebarResizer"></div>
+      </div>  <!-- sidebarContainer -->
+
+      <div id="mainContainer">
+        <div class="findbar hidden doorHanger" id="findbar">
+          <div id="findbarInputContainer">
+            <span class="loadingInput end">
+              <input id="findInput" class="toolbarField" title="Rechercher" placeholder="Rechercher dans le document…" tabindex="91" data-l10n-id="pdfjs-find-input" aria-invalid="false">
+            </span>
+            <div class="splitToolbarButton">
+              <button id="findPrevious" class="toolbarButton" title="Trouver l’occurrence précédente de l’expression" tabindex="92" data-l10n-id="pdfjs-find-previous-button">
+                <span data-l10n-id="pdfjs-find-previous-button-label">Précédent</span>
+              </button>
+              <div class="splitToolbarButtonSeparator"></div>
+              <button id="findNext" class="toolbarButton" title="Trouver la prochaine occurrence de l’expression" tabindex="93" data-l10n-id="pdfjs-find-next-button">
+                <span data-l10n-id="pdfjs-find-next-button-label">Suivant</span>
+              </button>
+            </div>
+          </div>
+
+          <div id="findbarOptionsOneContainer">
+            <input type="checkbox" id="findHighlightAll" class="toolbarField" tabindex="94">
+            <label for="findHighlightAll" class="toolbarLabel" data-l10n-id="pdfjs-find-highlight-checkbox">Tout surligner</label>
+            <input type="checkbox" id="findMatchCase" class="toolbarField" tabindex="95">
+            <label for="findMatchCase" class="toolbarLabel" data-l10n-id="pdfjs-find-match-case-checkbox-label">Respecter la casse</label>
+          </div>
+          <div id="findbarOptionsTwoContainer">
+            <input type="checkbox" id="findMatchDiacritics" class="toolbarField" tabindex="96">
+            <label for="findMatchDiacritics" class="toolbarLabel" data-l10n-id="pdfjs-find-match-diacritics-checkbox-label">Respecter les accents et diacritiques</label>
+            <input type="checkbox" id="findEntireWord" class="toolbarField" tabindex="97">
+            <label for="findEntireWord" class="toolbarLabel" data-l10n-id="pdfjs-find-entire-word-checkbox-label">Mots entiers</label>
+          </div>
+
+          <div id="findbarMessageContainer" aria-live="polite">
+            <span id="findResultsCount" class="toolbarLabel"></span>
+            <span id="findMsg" class="toolbarLabel"></span>
+          </div>
+        </div>  <!-- findbar -->
+
+        <div class="editorParamsToolbar hidden doorHangerRight" id="editorHighlightParamsToolbar">
+          <div id="highlightParamsToolbarContainer" class="editorParamsToolbarContainer">
+            <div id="editorHighlightColorPicker" class="colorPicker">
+              <span id="highlightColorPickerLabel" class="editorParamsLabel" data-l10n-id="pdfjs-editor-highlight-colorpicker-label">Couleur de surlignage</span>
+            <div class="dropdown" role="listbox" aria-multiselectable="false" aria-orientation="horizontal" data-l10n-id="pdfjs-editor-colorpicker-dropdown" aria-labelledby="highlightColorPickerLabel" aria-label="Choix de couleurs"><button tabindex="0" role="option" data-color="#FFFF98" title="Jaune" data-l10n-id="pdfjs-editor-colorpicker-yellow" aria-selected="true"><span class="swatch" style="background-color: rgb(255, 255, 152);"></span></button><button tabindex="0" role="option" data-color="#53FFBC" title="Vert" data-l10n-id="pdfjs-editor-colorpicker-green" aria-selected="false"><span class="swatch" style="background-color: rgb(83, 255, 188);"></span></button><button tabindex="0" role="option" data-color="#80EBFF" title="Bleu" data-l10n-id="pdfjs-editor-colorpicker-blue" aria-selected="false"><span class="swatch" style="background-color: rgb(128, 235, 255);"></span></button><button tabindex="0" role="option" data-color="#FFCBE6" title="Rose" data-l10n-id="pdfjs-editor-colorpicker-pink" aria-selected="false"><span class="swatch" style="background-color: rgb(255, 203, 230);"></span></button><button tabindex="0" role="option" data-color="#FF4F5F" title="Rouge" data-l10n-id="pdfjs-editor-colorpicker-red" aria-selected="false"><span class="swatch" style="background-color: rgb(255, 79, 95);"></span></button></div></div>
+            <div id="editorHighlightThickness">
+              <label for="editorFreeHighlightThickness" class="editorParamsLabel" data-l10n-id="pdfjs-editor-free-highlight-thickness-input">Épaisseur</label>
+              <div class="thicknessPicker">
+                <input type="range" id="editorFreeHighlightThickness" class="editorParamsSlider" data-l10n-id="pdfjs-editor-free-highlight-thickness-title" value="12" min="8" max="24" step="1" tabindex="101" title="Modifier l’épaisseur pour le surlignage d’éléments non textuels">
+              </div>
+            </div>
+            <div id="editorHighlightVisibility">
+              <div class="divider"></div>
+              <div class="toggler">
+                <label for="editorHighlightShowAll" class="editorParamsLabel" data-l10n-id="pdfjs-editor-highlight-show-all-button-label">Tout afficher</label>
+                <button id="editorHighlightShowAll" class="toggle-button" data-l10n-id="pdfjs-editor-highlight-show-all-button" aria-pressed="true" tabindex="102" title="Tout afficher"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="editorParamsToolbar hidden doorHangerRight" id="editorFreeTextParamsToolbar">
+          <div class="editorParamsToolbarContainer">
+            <div class="editorParamsSetter">
+              <label for="editorFreeTextColor" class="editorParamsLabel" data-l10n-id="pdfjs-editor-free-text-color-input">Couleur</label>
+              <input type="color" id="editorFreeTextColor" class="editorParamsColor" tabindex="103">
+            </div>
+            <div class="editorParamsSetter">
+              <label for="editorFreeTextFontSize" class="editorParamsLabel" data-l10n-id="pdfjs-editor-free-text-size-input">Taille</label>
+              <input type="range" id="editorFreeTextFontSize" class="editorParamsSlider" value="10" min="5" max="100" step="1" tabindex="104">
+            </div>
+          </div>
+        </div>
+
+        <div class="editorParamsToolbar hidden doorHangerRight" id="editorInkParamsToolbar">
+          <div class="editorParamsToolbarContainer">
+            <div class="editorParamsSetter">
+              <label for="editorInkColor" class="editorParamsLabel" data-l10n-id="pdfjs-editor-ink-color-input">Couleur</label>
+              <input type="color" id="editorInkColor" class="editorParamsColor" tabindex="105">
+            </div>
+            <div class="editorParamsSetter">
+              <label for="editorInkThickness" class="editorParamsLabel" data-l10n-id="pdfjs-editor-ink-thickness-input">Épaisseur</label>
+              <input type="range" id="editorInkThickness" class="editorParamsSlider" value="1" min="1" max="20" step="1" tabindex="106">
+            </div>
+            <div class="editorParamsSetter">
+              <label for="editorInkOpacity" class="editorParamsLabel" data-l10n-id="pdfjs-editor-ink-opacity-input">Opacité</label>
+              <input type="range" id="editorInkOpacity" class="editorParamsSlider" value="100" min="1" max="100" step="1" tabindex="107">
+            </div>
+          </div>
+        </div>
+
+        <div class="editorParamsToolbar hidden doorHangerRight" id="editorStampParamsToolbar">
+          <div class="editorParamsToolbarContainer">
+            <button id="editorStampAddImage" class="secondaryToolbarButton" title="Ajouter une image" tabindex="108" data-l10n-id="pdfjs-editor-stamp-add-image-button">
+              <span class="editorParamsLabel" data-l10n-id="pdfjs-editor-stamp-add-image-button-label">Ajouter une image</span>
+            </button>
+          </div>
+        </div>
+
+        <div id="secondaryToolbar" class="secondaryToolbar hidden doorHangerRight">
+          <div id="secondaryToolbarButtonContainer">
+
+            <button id="secondaryPrint" class="secondaryToolbarButton visibleMediumView" title="Imprimer" tabindex="52" data-l10n-id="pdfjs-print-button">
+              <span data-l10n-id="pdfjs-print-button-label">Imprimer</span>
+            </button>
+
+            <button id="secondaryDownload" class="secondaryToolbarButton visibleMediumView" title="Enregistrer" tabindex="53" data-l10n-id="pdfjs-save-button">
+              <span data-l10n-id="pdfjs-save-button-label">Enregistrer</span>
+            </button>
+
+          <div class="horizontalToolbarSeparator visibleMediumView"></div>
+
+            <button id="presentationMode" class="secondaryToolbarButton" title="Basculer en mode présentation" tabindex="54" data-l10n-id="pdfjs-presentation-mode-button">
+              <span data-l10n-id="pdfjs-presentation-mode-button-label">Mode présentation</span>
+            </button>
+
+            <a href="#page=1&amp;zoom=auto,-82,848" id="viewBookmark" class="secondaryToolbarButton" title="Page courante (montrer l’adresse de la page courante)" tabindex="55" data-l10n-id="pdfjs-bookmark-button">
+              <span data-l10n-id="pdfjs-bookmark-button-label">Page courante</span>
+            </a>
+
+            <div id="viewBookmarkSeparator" class="horizontalToolbarSeparator"></div>
+
+            <button id="firstPage" class="secondaryToolbarButton" title="Aller à la première page" tabindex="56" data-l10n-id="pdfjs-first-page-button" disabled="">
+              <span data-l10n-id="pdfjs-first-page-button-label">Aller à la première page</span>
+            </button>
+            <button id="lastPage" class="secondaryToolbarButton" title="Aller à la dernière page" tabindex="57" data-l10n-id="pdfjs-last-page-button">
+              <span data-l10n-id="pdfjs-last-page-button-label">Aller à la dernière page</span>
+            </button>
+
+            <div class="horizontalToolbarSeparator"></div>
+
+            <button id="pageRotateCw" class="secondaryToolbarButton" title="Rotation horaire" tabindex="58" data-l10n-id="pdfjs-page-rotate-cw-button">
+              <span data-l10n-id="pdfjs-page-rotate-cw-button-label">Rotation horaire</span>
+            </button>
+            <button id="pageRotateCcw" class="secondaryToolbarButton" title="Rotation antihoraire" tabindex="59" data-l10n-id="pdfjs-page-rotate-ccw-button">
+              <span data-l10n-id="pdfjs-page-rotate-ccw-button-label">Rotation antihoraire</span>
+            </button>
+
+            <div class="horizontalToolbarSeparator"></div>
+
+            <div id="cursorToolButtons" role="radiogroup">
+              <button id="cursorSelectTool" class="secondaryToolbarButton toggled" title="Activer l’outil de sélection de texte" tabindex="60" data-l10n-id="pdfjs-cursor-text-select-tool-button" role="radio" aria-checked="true">
+                <span data-l10n-id="pdfjs-cursor-text-select-tool-button-label">Outil de sélection de texte</span>
+              </button>
+              <button id="cursorHandTool" class="secondaryToolbarButton" title="Activer l’outil main" tabindex="61" data-l10n-id="pdfjs-cursor-hand-tool-button" role="radio" aria-checked="false">
+                <span data-l10n-id="pdfjs-cursor-hand-tool-button-label">Outil main</span>
+              </button>
+            </div>
+
+            <div class="horizontalToolbarSeparator"></div>
+
+            <div id="scrollModeButtons" role="radiogroup">
+              <button id="scrollPage" class="secondaryToolbarButton" title="Utiliser le défilement par page" tabindex="62" data-l10n-id="pdfjs-scroll-page-button" role="radio" aria-checked="false">
+                <span data-l10n-id="pdfjs-scroll-page-button-label">Défilement par page</span>
+              </button>
+              <button id="scrollVertical" class="secondaryToolbarButton toggled" title="Utiliser le défilement vertical" tabindex="63" data-l10n-id="pdfjs-scroll-vertical-button" role="radio" aria-checked="true">
+                <span data-l10n-id="pdfjs-scroll-vertical-button-label">Défilement vertical</span>
+              </button>
+              <button id="scrollHorizontal" class="secondaryToolbarButton" title="Utiliser le défilement horizontal" tabindex="64" data-l10n-id="pdfjs-scroll-horizontal-button" role="radio" aria-checked="false">
+                <span data-l10n-id="pdfjs-scroll-horizontal-button-label">Défilement horizontal</span>
+              </button>
+              <button id="scrollWrapped" class="secondaryToolbarButton" title="Utiliser le défilement par bloc" tabindex="65" data-l10n-id="pdfjs-scroll-wrapped-button" role="radio" aria-checked="false">
+                <span data-l10n-id="pdfjs-scroll-wrapped-button-label">Défilement par bloc</span>
+              </button>
+            </div>
+
+            <div class="horizontalToolbarSeparator"></div>
+
+            <div id="spreadModeButtons" role="radiogroup">
+              <button id="spreadNone" class="secondaryToolbarButton toggled" title="Ne pas afficher les pages deux à deux" tabindex="66" data-l10n-id="pdfjs-spread-none-button" role="radio" aria-checked="true">
+                <span data-l10n-id="pdfjs-spread-none-button-label">Pas de double affichage</span>
+              </button>
+              <button id="spreadOdd" class="secondaryToolbarButton" title="Afficher les pages par deux, impaires à gauche" tabindex="67" data-l10n-id="pdfjs-spread-odd-button" role="radio" aria-checked="false">
+                <span data-l10n-id="pdfjs-spread-odd-button-label">Doubles pages, impaires à gauche</span>
+              </button>
+              <button id="spreadEven" class="secondaryToolbarButton" title="Afficher les pages par deux, paires à gauche" tabindex="68" data-l10n-id="pdfjs-spread-even-button" role="radio" aria-checked="false">
+                <span data-l10n-id="pdfjs-spread-even-button-label">Doubles pages, paires à gauche</span>
+              </button>
+            </div>
+
+            <div class="horizontalToolbarSeparator"></div>
+
+            <button id="documentProperties" class="secondaryToolbarButton" title="Propriétés du document…" tabindex="69" data-l10n-id="pdfjs-document-properties-button" aria-controls="documentPropertiesDialog">
+              <span data-l10n-id="pdfjs-document-properties-button-label">Propriétés du document…</span>
+            </button>
+          </div>
+        </div>  <!-- secondaryToolbar -->
+
+        <div class="toolbar">
+          <div id="toolbarContainer">
+            <div id="toolbarViewer">
+              <div id="toolbarViewerLeft">
+                <button id="sidebarToggle" class="toolbarButton" title="Afficher/Masquer le panneau latéral" tabindex="11" data-l10n-id="pdfjs-toggle-sidebar-button" aria-expanded="false" aria-controls="sidebarContainer">
+                  <span data-l10n-id="pdfjs-toggle-sidebar-button-label">Afficher/Masquer le panneau latéral</span>
+                </button>
+                <div class="toolbarButtonSpacer"></div>
+                <button id="viewFind" class="toolbarButton hidden" title="Rechercher dans le document" tabindex="12" data-l10n-id="pdfjs-findbar-button" aria-expanded="false" aria-controls="findbar">
+                  <span data-l10n-id="pdfjs-findbar-button-label">Rechercher</span>
+                </button>
+                <div class="splitToolbarButton hiddenSmallView">
+                  <button class="toolbarButton" title="Page précédente" id="previous" tabindex="13" data-l10n-id="pdfjs-previous-button" disabled="">
+                    <span data-l10n-id="pdfjs-previous-button-label">Précédent</span>
+                  </button>
+                  <div class="splitToolbarButtonSeparator"></div>
+                  <button class="toolbarButton" title="Page suivante" id="next" tabindex="14" data-l10n-id="pdfjs-next-button">
+                    <span data-l10n-id="pdfjs-next-button-label">Suivant</span>
+                  </button>
+                </div>
+                <span class="loadingInput start">
+                  <input type="number" id="pageNumber" class="toolbarField" title="Page" value="1" min="1" tabindex="15" data-l10n-id="pdfjs-page-input" autocomplete="off" max="3">
+                </span>
+                <span id="numPages" class="toolbarLabel" data-l10n-id="pdfjs-of-pages" data-l10n-args="{&quot;pagesCount&quot;:3}">sur 3</span>
+              </div>
+              <div id="toolbarViewerRight">
+                <div id="editorModeButtons" class="splitToolbarButton toggled" role="radiogroup">
+                  <button id="editorHighlight" class="toolbarButton" title="Surligner" role="radio" aria-checked="false" aria-controls="editorHighlightParamsToolbar" tabindex="31" data-l10n-id="pdfjs-editor-highlight-button">
+                    <span data-l10n-id="pdfjs-editor-highlight-button-label">Surligner</span>
+                  </button>
+                  <button id="editorFreeText" class="toolbarButton" title="Texte" role="radio" aria-checked="false" aria-controls="editorFreeTextParamsToolbar" tabindex="32" data-l10n-id="pdfjs-editor-free-text-button">
+                    <span data-l10n-id="pdfjs-editor-free-text-button-label">Texte</span>
+                  </button>
+                  <button id="editorInk" class="toolbarButton" title="Dessiner" role="radio" aria-checked="false" aria-controls="editorInkParamsToolbar" tabindex="33" data-l10n-id="pdfjs-editor-ink-button">
+                    <span data-l10n-id="pdfjs-editor-ink-button-label">Dessiner</span>
+                  </button>
+                  <button id="editorStamp" class="toolbarButton" title="Ajouter ou modifier des images" role="radio" aria-checked="false" aria-controls="editorStampParamsToolbar" tabindex="34" data-l10n-id="pdfjs-editor-stamp-button">
+                    <span data-l10n-id="pdfjs-editor-stamp-button-label">Ajouter ou modifier des images</span>
+                  </button>
+                </div>
+
+                <div id="editorModeSeparator" class="verticalToolbarSeparator"></div>
+
+                <button id="print" class="toolbarButton hiddenMediumView" title="Imprimer" tabindex="41" data-l10n-id="pdfjs-print-button">
+                  <span data-l10n-id="pdfjs-print-button-label">Imprimer</span>
+                </button>
+
+                <button id="download" class="toolbarButton hiddenMediumView" title="Enregistrer" tabindex="42" data-l10n-id="pdfjs-save-button">
+                  <span data-l10n-id="pdfjs-save-button-label">Enregistrer</span>
+                </button>
+
+                <div class="verticalToolbarSeparator hiddenMediumView"></div>
+
+                <button id="secondaryToolbarToggle" class="toolbarButton" title="Outils" tabindex="43" data-l10n-id="pdfjs-tools-button" aria-expanded="false" aria-controls="secondaryToolbar">
+                  <span data-l10n-id="pdfjs-tools-button-label">Outils</span>
+                </button>
+              </div>
+              <div id="toolbarViewerMiddle">
+                <div class="splitToolbarButton">
+                  <button id="zoomOut" class="toolbarButton" title="Zoom arrière" tabindex="21" data-l10n-id="pdfjs-zoom-out-button">
+                    <span data-l10n-id="pdfjs-zoom-out-button-label">Zoom arrière</span>
+                  </button>
+                  <div class="splitToolbarButtonSeparator"></div>
+                  <button id="zoomIn" class="toolbarButton" title="Zoom avant" tabindex="22" data-l10n-id="pdfjs-zoom-in-button">
+                    <span data-l10n-id="pdfjs-zoom-in-button-label">Zoom avant</span>
+                   </button>
+                </div>
+                <span id="scaleSelectContainer" class="dropdownToolbarButton">
+                  <select id="scaleSelect" title="Zoom" tabindex="23" data-l10n-id="pdfjs-zoom-select">
+                    <option id="pageAutoOption" value="auto" selected="selected" data-l10n-id="pdfjs-page-scale-auto">Zoom automatique</option>
+                    <option id="pageActualOption" value="page-actual" data-l10n-id="pdfjs-page-scale-actual">Taille réelle</option>
+                    <option id="pageFitOption" value="page-fit" data-l10n-id="pdfjs-page-scale-fit">Page entière</option>
+                    <option id="pageWidthOption" value="page-width" data-l10n-id="pdfjs-page-scale-width">Pleine largeur</option>
+                    <option id="customScaleOption" value="custom" disabled="disabled" hidden="true" data-l10n-id="pdfjs-page-scale-percent" data-l10n-args="{ &quot;scale&quot;: 0 }">0&nbsp;%</option>
+                    <option value="0.5" data-l10n-id="pdfjs-page-scale-percent" data-l10n-args="{ &quot;scale&quot;: 50 }">50&nbsp;%</option>
+                    <option value="0.75" data-l10n-id="pdfjs-page-scale-percent" data-l10n-args="{ &quot;scale&quot;: 75 }">75&nbsp;%</option>
+                    <option value="1" data-l10n-id="pdfjs-page-scale-percent" data-l10n-args="{ &quot;scale&quot;: 100 }">100&nbsp;%</option>
+                    <option value="1.25" data-l10n-id="pdfjs-page-scale-percent" data-l10n-args="{ &quot;scale&quot;: 125 }">125&nbsp;%</option>
+                    <option value="1.5" data-l10n-id="pdfjs-page-scale-percent" data-l10n-args="{ &quot;scale&quot;: 150 }">150&nbsp;%</option>
+                    <option value="2" data-l10n-id="pdfjs-page-scale-percent" data-l10n-args="{ &quot;scale&quot;: 200 }">200&nbsp;%</option>
+                    <option value="3" data-l10n-id="pdfjs-page-scale-percent" data-l10n-args="{ &quot;scale&quot;: 300 }">300&nbsp;%</option>
+                    <option value="4" data-l10n-id="pdfjs-page-scale-percent" data-l10n-args="{ &quot;scale&quot;: 400 }">400&nbsp;%</option>
+                  </select>
+                </span>
+              </div>
+            </div>
+            <div id="loadingBar" style="--progressBar-percent: 100%; --progressBar-end-offset: 17px;" class="hidden">
+              <div class="progress">
+                <div class="glimmer">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="viewerContainer" tabindex="0">
+          <div id="hiddenCopyElement"></div><div id="viewer" class="pdfViewer" style="--scale-factor: 1.6666666666666665;" lang="es-ES"><div class="page" data-page-number="1" role="region" data-l10n-id="pdfjs-page-landmark" data-l10n-args="{&quot;page&quot;:1}" style="width: round(var(--scale-factor) * 595.276px, 1px); height: round(var(--scale-factor) * 841.89px, 1px);" data-loaded="true" aria-label="Page 1"><div class="canvasWrapper"><canvas role="presentation" width="1491" height="2106" style="width: 994px; height: 1404px;"></canvas></div><div tabindex="0" class="textLayer" style="width: round(var(--scale-factor) * 595.276px, 1px); height: round(var(--scale-factor) * 841.89px, 1px);" data-main-rotation="0"><span style="left: 3.59%; top: 25.52%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(1.02435);" role="presentation" dir="ltr">Désigné(e)(s) ci-après « le locataire principal »</span><br role="presentation"><span style="left: 3.59%; top: 28.37%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(1.06734);" role="presentation" dir="ltr">d’une part</span><br role="presentation"><span style="left: 3.59%; top: 31.22%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.907321);" role="presentation" dir="ltr">ET</span><br role="presentation"><span style="left: 3.59%; top: 40.19%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(1.01098);" role="presentation" dir="ltr">Désigné(e)(s) ci-après « le sous-locataire »</span><br role="presentation"><span style="left: 3.59%; top: 43.04%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.950568);" role="presentation" dir="ltr">D’AUTRE PART</span><br role="presentation"><span style="left: 3.59%; top: 16.38%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.895667);" role="presentation" dir="ltr">ENTRE LES SOUSSIGNÉS</span><br role="presentation"><span style="left: 3.59%; top: 46.74%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.916436);" dir="ltr" aria-owns="pdfjs_internal_id_157R">IL EST RAPPELÉ CE QUI SUIT :</span><br role="presentation"><span style="left: 3.59%; top: 77.58%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.921974);" role="presentation" dir="ltr">IL EST CONVENU ET ARRÊTÉ CE QUI SUIT :</span><br role="presentation"><span style="left: 5.04%; top: 3.85%; font-size: calc(var(--scale-factor)*18.00px); font-family: sans-serif; transform: scaleX(1.11407);" role="presentation" dir="ltr">C O N T R A T D E B A I L D E S O U S - L O C A T I O N</span><br role="presentation"><span style="left: 18.16%; top: 7.54%; font-size: calc(var(--scale-factor)*18.00px); font-family: sans-serif; transform: scaleX(1.10048);" role="presentation" dir="ltr">D ’ U N</span><span style="left: 28.89%; top: 7.54%; font-size: calc(var(--scale-factor)*18.00px); font-family: sans-serif;" role="presentation" dir="ltr"> </span><span style="left: 31.79%; top: 7.54%; font-size: calc(var(--scale-factor)*18.00px); font-family: sans-serif; transform: scaleX(1.078);" role="presentation" dir="ltr">L O C A L</span><span style="left: 46.1%; top: 7.54%; font-size: calc(var(--scale-factor)*18.00px); font-family: sans-serif;" role="presentation" dir="ltr"> </span><span style="left: 49%; top: 7.54%; font-size: calc(var(--scale-factor)*18.00px); font-family: sans-serif; transform: scaleX(1.10382);" role="presentation" dir="ltr">D ’ H A B I T A T I O N</span><br role="presentation"><span style="left: 3.47%; top: 49.33%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.988768);" dir="ltr" aria-owns="pdfjs_internal_id_158R">Le Bailleur …………….…………….…………….…………….……….……… (indiquer le nom du bailleur) , domicilié</span><br role="presentation"><span style="left: 3.47%; top: 50.99%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.991419);" dir="ltr" aria-owns="pdfjs_internal_id_159R">…………….…………….…………….…………….……….……… (indiquer le domicile du bailleur) a donné en location</span><br role="presentation"><span style="left: 3.47%; top: 52.66%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.993199);" dir="ltr" aria-owns="pdfjs_internal_id_160R">à …………….…………….…………….…………….……….……… (indiquer nom du locataire principal) le logement situé</span><br role="presentation"><span style="left: 3.47%; top: 54.32%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.979908);" dir="ltr" aria-owns="pdfjs_internal_id_161R">…………….…………….…………….…………….……….……… (adresse complète à usage de résidence principale), par un bail</span><br role="presentation"><span style="left: 3.47%; top: 55.98%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.993087);" dir="ltr" aria-owns="pdfjs_internal_id_162R">signé le …………….…………….……… (date de la signature du contrat de bail liant le locataire principal et son bailleur).</span><br role="presentation"><span style="left: 3.47%; top: 59.31%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.985914);" dir="ltr" aria-owns="pdfjs_internal_id_163R">Ce bail a été consenti pour une durée de …………….…………….…………….… à compter du …………….…………… (date de</span><br role="presentation"><span style="left: 3.47%; top: 60.97%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.994243);" dir="ltr" aria-owns="pdfjs_internal_id_164R">début du bail) moyennant un loyer mensuel de …………….…………….…………….……… (indiquer la somme en chiffres et</span><br role="presentation"><span style="left: 3.47%; top: 62.63%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(1.01168);" role="presentation" dir="ltr">en toutes lettres en euro).</span><br role="presentation"><span style="left: 3.47%; top: 65.96%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.97958);" role="presentation" dir="ltr">Le sous-locataire reconnaît avoir connaissance des conditions et charges du bail dont une copie est annexée à la présente</span><br role="presentation"><span style="left: 3.47%; top: 67.62%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(1.01712);" role="presentation" dir="ltr">convention.</span><br role="presentation"><span style="left: 3.47%; top: 70.95%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.989458);" dir="ltr" aria-owns="pdfjs_internal_id_165R">Le propriétaire des locaux loués a autorisé la sous-location par courrier du …………….…………… (jj/mm/aaaa) dont une</span><br role="presentation"><span style="left: 3.47%; top: 72.61%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.986725);" role="presentation" dir="ltr">copie est annexée à la présente convention.</span><br role="presentation"><span style="left: 3.59%; top: 18.84%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(1.0026);" role="presentation" dir="ltr">Nom et Prénom du locataire principal</span><span style="left: 31.44%; top: 18.84%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif;" role="presentation" dir="ltr"> </span><span style="left: 31.82%; top: 18.94%; font-size: calc(var(--scale-factor)*9.00px); font-family: sans-serif;" role="presentation" dir="ltr">:</span><span style="left: 32.19%; top: 18.94%; font-size: calc(var(--scale-factor)*9.00px); font-family: sans-serif;" role="presentation" dir="ltr"> </span><span style="left: 32.5%; top: 18.84%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.978865);" dir="ltr" aria-owns="pdfjs_internal_id_151R">…………….…………….…………….…………….……….…………….……....…....</span><br role="presentation"><span style="left: 3.59%; top: 20.7%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.947715);" role="presentation" dir="ltr">Adresse :</span><span style="left: 10.35%; top: 20.7%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif;" role="presentation" dir="ltr"> </span><span style="left: 10.69%; top: 20.7%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.979083);" dir="ltr" aria-owns="pdfjs_internal_id_152R">…………….…………….…………….…………….……….……….…………….……….....….…………….……….....</span><br role="presentation"><span style="left: 3.59%; top: 22.56%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(1.00694);" role="presentation" dir="ltr">Numéro de téléphone :</span><span style="left: 20.88%; top: 22.56%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif;" role="presentation" dir="ltr"> </span><span style="left: 21.99%; top: 22.56%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.97642);" dir="ltr" aria-owns="pdfjs_internal_id_153R">…………….…………….…………….…………….……….……….…………….……….....…....…....</span><br role="presentation"><span style="left: 3.59%; top: 33.78%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.990649);" role="presentation" dir="ltr">Nom et Prénom du sous-locataire</span><span style="left: 28.5%; top: 33.78%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif;" role="presentation" dir="ltr"> </span><span style="left: 28.88%; top: 33.87%; font-size: calc(var(--scale-factor)*9.00px); font-family: sans-serif;" role="presentation" dir="ltr">:</span><span style="left: 29.26%; top: 33.87%; font-size: calc(var(--scale-factor)*9.00px); font-family: sans-serif;" role="presentation" dir="ltr"> </span><span style="left: 29.56%; top: 33.78%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.98102);" dir="ltr" aria-owns="pdfjs_internal_id_154R">…………….…………….…………….…………….……….…………….……...……...…</span><br role="presentation"><span style="left: 3.59%; top: 35.64%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.947715);" role="presentation" dir="ltr">Adresse :</span><span style="left: 10.35%; top: 35.64%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif;" role="presentation" dir="ltr"> </span><span style="left: 10.69%; top: 35.64%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.979083);" dir="ltr" aria-owns="pdfjs_internal_id_155R">…………….…………….…………….…………….……….……….…………….……….....….…………….……….....</span><br role="presentation"><span style="left: 3.59%; top: 37.5%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(1.00694);" role="presentation" dir="ltr">Numéro de téléphone :</span><span style="left: 20.88%; top: 37.5%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif;" dir="ltr" aria-owns="pdfjs_internal_id_156R"> </span><span style="left: 21.99%; top: 37.5%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.97642);" role="presentation" dir="ltr">…………….…………….…………….…………….……….……….…………….……….....…....…....</span><br role="presentation"><span style="left: 3.47%; top: 80.94%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.9598);" role="presentation" dir="ltr">ARTICLE 1 – OBJET DU BAIL DE SOUS-LOCATION DE LOCAL D’HABITATION</span><br role="presentation"><span style="left: 3.53%; top: 83.91%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.979534);" dir="ltr" aria-owns="pdfjs_internal_id_166R">Le locataire principal sous-loue :</span><br role="presentation"><span style="left: 7.15%; top: 86.37%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.932556);" dir="ltr" aria-owns="pdfjs_internal_id_168R">l’ensemble</span><br role="presentation"><span style="left: 7.15%; top: 89.28%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.96085);" role="presentation" dir="ltr">une partie</span><br role="presentation"><span style="left: 3.56%; top: 95.67%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.976634);" role="presentation" dir="ltr">Page 1/3</span><span style="left: 10.16%; top: 95.67%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif;" role="presentation" dir="ltr"> </span><span style="left: 56.7%; top: 95.08%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.941782);" dir="ltr" aria-owns="pdfjs_internal_id_169R">Paraphes :</span><br role="presentation"><span style="left: 29.18%; top: 11.4%; font-size: calc(var(--scale-factor)*8.00px); font-family: sans-serif; transform: scaleX(0.981025);" role="presentation" dir="ltr">(Loi n°48-1360 du 1er septembre 1948 et loi n°89-462 du 6 juillet 1989)</span><div class="endOfContent"></div></div><div class="annotationLayer" style="width: round(var(--scale-factor) * 595.276px, 1px); height: round(var(--scale-factor) * 841.89px, 1px);" data-main-rotation="0"><section data-annotation-id="151R" style="z-index: 0; left: 32.899%; top: 18.1306%; width: 57.4523%; height: 1.62492%;" class="textWidgetAnnotation"><input type="text" value="" data-element-id="151R" name="untitled1" tabindex="1000" aria-required="false" style="font-size: calc(8.64px * var(--scale-factor)); color: rgb(0, 0, 0); text-align: left; background-color: transparent;" id="pdfjs_internal_id_151R"></section><section data-annotation-id="152R" style="z-index: 1; left: 11.2486%; top: 20.0976%; width: 78.9819%; height: 1.53939%;" class="textWidgetAnnotation"><input type="text" value="" data-element-id="152R" name="untitled3" tabindex="1000" aria-required="false" style="font-size: calc(8.1px * var(--scale-factor)); color: rgb(0, 0, 0); text-align: left; background-color: transparent;" id="pdfjs_internal_id_152R"></section><section data-annotation-id="153R" style="z-index: 2; left: 22.2552%; top: 21.9791%; width: 67.9752%; height: 1.71044%;" class="textWidgetAnnotation"><input type="text" value="" data-element-id="153R" name="untitled4" tabindex="1000" aria-required="false" style="font-size: calc(8.64px * var(--scale-factor)); color: rgb(0, 0, 0); text-align: left; background-color: transparent;" id="pdfjs_internal_id_153R"></section><section data-annotation-id="154R" style="z-index: 3; left: 29.9962%; top: 33.097%; width: 59.8714%; height: 1.71044%;" class="textWidgetAnnotation"><input type="text" value="" data-element-id="154R" name="untitled5" tabindex="1000" aria-required="false" style="font-size: calc(8.64px * var(--scale-factor)); color: rgb(0, 0, 0); text-align: left; background-color: transparent;" id="pdfjs_internal_id_154R"></section><section data-annotation-id="155R" style="z-index: 4; left: 11.6114%; top: 35.064%; width: 78.3771%; height: 1.53939%;" class="textWidgetAnnotation"><input type="text" value="" data-element-id="155R" name="untitled6" tabindex="1000" aria-required="false" style="font-size: calc(8.1px * var(--scale-factor)); color: rgb(0, 0, 0); text-align: left; background-color: transparent;" id="pdfjs_internal_id_155R"></section><section data-annotation-id="156R" style="z-index: 5; left: 22.0133%; top: 36.8599%; width: 67.6123%; height: 1.62492%;" class="textWidgetAnnotation"><input type="text" value="" data-element-id="156R" name="untitled7" tabindex="1000" aria-required="false" style="font-size: calc(8.64px * var(--scale-factor)); color: rgb(0, 0, 0); text-align: left; background-color: transparent;" id="pdfjs_internal_id_156R"></section><section data-annotation-id="157R" style="z-index: 6; left: 12.2162%; top: 48.4909%; width: 44.3895%; height: 1.79596%;" class="textWidgetAnnotation"><input type="text" value="" data-element-id="157R" name="untitled8" tabindex="1000" aria-required="false" style="font-size: calc(8.64px * var(--scale-factor)); color: rgb(0, 0, 0); text-align: left; background-color: transparent;" id="pdfjs_internal_id_157R"></section><section data-annotation-id="158R" style="z-index: 7; left: 3.87047%; top: 50.5434%; width: 44.8733%; height: 1.45387%;" class="textWidgetAnnotation"><input type="text" value="" data-element-id="158R" name="untitled9" tabindex="1000" aria-required="false" style="font-size: calc(7.6px * var(--scale-factor)); color: rgb(0, 0, 0); text-align: left; background-color: transparent;" id="pdfjs_internal_id_158R"></section><section data-annotation-id="159R" style="z-index: 8; left: 5.08%; top: 52.2539%; width: 44.0266%; height: 1.45387%;" class="textWidgetAnnotation"><input type="text" value="" data-element-id="159R" name="untitled10" tabindex="1000" aria-required="false" style="font-size: calc(7.6px * var(--scale-factor)); color: rgb(0, 0, 0); text-align: left; background-color: transparent;" id="pdfjs_internal_id_159R"></section><section data-annotation-id="160R" style="z-index: 9; left: 3.99143%; top: 53.9643%; width: 44.7524%; height: 1.28283%;" class="textWidgetAnnotation"><input type="text" value="" data-element-id="160R" name="untitled11" tabindex="1000" aria-required="false" style="font-size: calc(6.5px * var(--scale-factor)); color: rgb(0, 0, 0); text-align: left; background-color: transparent;" id="pdfjs_internal_id_160R"></section><section data-annotation-id="161R" style="z-index: 10; left: 10.4019%; top: 55.5037%; width: 21.2876%; height: 1.45387%;" class="textWidgetAnnotation"><input type="text" value="" data-element-id="161R" name="untitled12" tabindex="1000" aria-required="false" style="font-size: calc(7.6px * var(--scale-factor)); color: rgb(0, 0, 0); text-align: left; background-color: transparent;" id="pdfjs_internal_id_161R"></section><section data-annotation-id="162R" style="z-index: 11; left: 34.5924%; top: 58.7535%; width: 26.7305%; height: 1.53939%;" class="textWidgetAnnotation"><input type="text" value="" data-element-id="162R" name="untitled13" tabindex="1000" aria-required="false" style="font-size: calc(8.1px * var(--scale-factor)); color: rgb(0, 0, 0); text-align: left; background-color: transparent;" id="pdfjs_internal_id_162R"></section><section data-annotation-id="163R" style="z-index: 12; left: 73.418%; top: 58.5825%; width: 15.9657%; height: 1.79596%;" class="textWidgetAnnotation"><input type="text" value="" data-element-id="163R" name="untitled14" tabindex="1000" aria-required="false" style="font-size: calc(8.64px * var(--scale-factor)); color: rgb(0, 0, 0); text-align: left; background-color: transparent;" id="pdfjs_internal_id_163R"></section><section data-annotation-id="164R" style="z-index: 13; left: 39.0676%; top: 60.5495%; width: 30.8428%; height: 1.45387%;" class="textWidgetAnnotation"><input type="text" value="" data-element-id="164R" name="untitled15" tabindex="1000" aria-required="false" style="font-size: calc(7.6px * var(--scale-factor)); color: rgb(0, 0, 0); text-align: left; background-color: transparent;" id="pdfjs_internal_id_164R"></section><section data-annotation-id="165R" style="z-index: 14; left: 59.2666%; top: 70.1279%; width: 15.9657%; height: 1.88148%;" class="textWidgetAnnotation"><input type="text" value="" data-element-id="165R" name="untitled16" tabindex="1000" aria-required="false" style="font-size: calc(8.64px * var(--scale-factor)); color: rgb(0, 0, 0); text-align: left; background-color: transparent;" id="pdfjs_internal_id_165R"></section><section data-annotation-id="166R" style="z-index: 15; left: 3.74952%; top: 86.3771%; width: 2.05619%; height: 1.19731%;" class="buttonWidgetAnnotation checkBox"><input data-element-id="166R" aria-required="false" type="checkbox" name="untitled17" exportvalue="Yes" tabindex="1000" style="background-color: transparent;" id="pdfjs_internal_id_166R"></section><section data-annotation-id="168R" style="z-index: 16; left: 3.87047%; top: 89.2848%; width: 1.93524%; height: 1.28283%;" class="buttonWidgetAnnotation checkBox"><input data-element-id="168R" aria-required="false" type="checkbox" name="untitled18" exportvalue="Yes" tabindex="1000" style="background-color: transparent;" id="pdfjs_internal_id_168R"></section><section data-annotation-id="169R" style="z-index: 17; left: 65.919%; top: 93.5609%; width: 30.2381%; height: 4.36162%;" class="textWidgetAnnotation"><textarea data-element-id="169R" name="untitled19" tabindex="1000" aria-required="false" style="font-size: calc(8.6px * var(--scale-factor)); color: rgb(0, 0, 0); text-align: left; background-color: transparent;" id="pdfjs_internal_id_169R"></textarea></section></div><div class="annotationEditorLayer disabled" hidden="" dir="ltr" tabindex="0" style="width: round(var(--scale-factor) * 595.276px, 1px); height: round(var(--scale-factor) * 841.89px, 1px);" data-main-rotation="0"></div></div><div class="page" data-page-number="2" role="region" data-l10n-id="pdfjs-page-landmark" data-l10n-args="{&quot;page&quot;:2}" style="width: round(var(--scale-factor) * 595.276px, 1px); height: round(var(--scale-factor) * 841.89px, 1px);" aria-label="Page 2" data-loaded="true"><div class="canvasWrapper"><canvas role="presentation" width="1491" height="2106" style="width: 994px; height: 1404px;"></canvas></div><div tabindex="0" class="textLayer" style="width: round(var(--scale-factor) * 595.276px, 1px); height: round(var(--scale-factor) * 841.89px, 1px);" data-main-rotation="0"><span style="left: 3.59%; top: 9.83%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.991045);" role="presentation" dir="ltr">………………………………</span><span style="left: 23.67%; top: 9.83%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif;" role="presentation" dir="ltr"> </span><span style="left: 23.97%; top: 9.83%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.991045);" role="presentation" dir="ltr">………………</span><span style="left: 34.01%; top: 9.83%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif;" role="presentation" dir="ltr"> </span><span style="left: 34.32%; top: 9.83%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.991045);" role="presentation" dir="ltr">………………</span><span style="left: 44.36%; top: 9.83%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif;" dir="ltr" aria-owns="pdfjs_internal_id_172R"> </span><span style="left: 44.66%; top: 9.83%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.991045);" role="presentation" dir="ltr">………………</span><span style="left: 54.7%; top: 9.83%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif;" role="presentation" dir="ltr"> </span><span style="left: 55.01%; top: 9.83%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.991045);" role="presentation" dir="ltr">…………………</span><span style="left: 66.72%; top: 9.83%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif;" role="presentation" dir="ltr"> </span><span style="left: 67.03%; top: 9.83%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.991045);" role="presentation" dir="ltr">………………</span><span style="left: 77.06%; top: 9.83%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif;" role="presentation" dir="ltr"> </span><span style="left: 77.37%; top: 9.83%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.980118);" role="presentation" dir="ltr">…………………………....</span><br role="presentation"><span style="left: 3.59%; top: 14.91%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.991045);" role="presentation" dir="ltr">………………………………</span><span style="left: 23.67%; top: 14.91%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif;" role="presentation" dir="ltr"> </span><span style="left: 23.97%; top: 14.91%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.991045);" role="presentation" dir="ltr">………………</span><span style="left: 34.01%; top: 14.91%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif;" role="presentation" dir="ltr"> </span><span style="left: 34.32%; top: 14.91%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.991045);" role="presentation" dir="ltr">………………</span><span style="left: 44.36%; top: 14.91%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif;" role="presentation" dir="ltr"> </span><span style="left: 44.66%; top: 14.91%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.991045);" dir="ltr" aria-owns="pdfjs_internal_id_174R">………………</span><span style="left: 54.7%; top: 14.91%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif;" role="presentation" dir="ltr"> </span><span style="left: 55.01%; top: 14.91%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.991045);" role="presentation" dir="ltr">…………………</span><span style="left: 66.72%; top: 14.91%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif;" role="presentation" dir="ltr"> </span><span style="left: 67.03%; top: 14.91%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.991045);" role="presentation" dir="ltr">………………</span><span style="left: 77.06%; top: 14.91%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif;" role="presentation" dir="ltr"> </span><span style="left: 77.37%; top: 14.91%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.980118);" role="presentation" dir="ltr">…………………………....</span><br role="presentation"><span style="left: 3.59%; top: 12.32%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.991045);" role="presentation" dir="ltr">………………………………</span><span style="left: 23.67%; top: 12.32%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif;" role="presentation" dir="ltr"> </span><span style="left: 23.97%; top: 12.32%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.991045);" role="presentation" dir="ltr">………………</span><span style="left: 34.01%; top: 12.32%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif;" role="presentation" dir="ltr"> </span><span style="left: 34.32%; top: 12.32%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.991045);" role="presentation" dir="ltr">………………</span><span style="left: 44.36%; top: 12.32%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif;" role="presentation" dir="ltr"> </span><span style="left: 44.66%; top: 12.32%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.991045);" dir="ltr" aria-owns="pdfjs_internal_id_173R">………………</span><span style="left: 54.7%; top: 12.32%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif;" role="presentation" dir="ltr"> </span><span style="left: 55.01%; top: 12.32%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.991045);" role="presentation" dir="ltr">…………………</span><span style="left: 66.72%; top: 12.32%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif;" role="presentation" dir="ltr"> </span><span style="left: 67.03%; top: 12.32%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.991045);" role="presentation" dir="ltr">………………</span><span style="left: 77.06%; top: 12.32%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif;" role="presentation" dir="ltr"> </span><span style="left: 77.37%; top: 12.32%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.980118);" role="presentation" dir="ltr">…………………………....</span><br role="presentation"><span style="left: 3.75%; top: 7.42%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.996387);" role="presentation" dir="ltr">Comprenant :</span><br role="presentation"><span style="left: 3.75%; top: 17.69%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.993529);" dir="ltr" aria-owns="pdfjs_internal_id_175R">Le logement présente une surface de ……………………m</span><span style="left: 46.83%; top: 17.7%; font-size: calc(var(--scale-factor)*5.83px); font-family: sans-serif;" role="presentation" dir="ltr">2</span><span style="left: 47.38%; top: 17.7%; font-size: calc(var(--scale-factor)*5.83px); font-family: sans-serif;" role="presentation" dir="ltr"> </span><span style="left: 47.76%; top: 17.69%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.980941);" dir="ltr" aria-owns="pdfjs_internal_id_177R">et sera partagé avec ……………………personnes.</span><br role="presentation"><span style="left: 3.5%; top: 21.9%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.942614);" role="presentation" dir="ltr">ARTICLE 2 – DURÉE DU BAIL</span><br role="presentation"><span style="left: 3.5%; top: 35.27%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.923817);" role="presentation" dir="ltr">ARTICLE 3 – LOYER</span><br role="presentation"><span style="left: 3.5%; top: 51.62%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.944138);" dir="ltr" aria-owns="pdfjs_internal_id_183R">ARTICLE 4 – DESTINATION DES LIEUX</span><br role="presentation"><span style="left: 3.5%; top: 64.9%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.932401);" role="presentation" dir="ltr">ARTICLE 5 – ÉTAT DES LIEUX</span><br role="presentation"><span style="left: 3.5%; top: 83.59%; font-size: calc(var(--scale-factor)*12.00px); font-family: sans-serif; transform: scaleX(0.924497);" role="presentation" dir="ltr">ARTICLE 6 – ASSURANCES</span><br role="presentation"><span style="left: 3.56%; top: 24.87%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.989111);" dir="ltr" aria-owns="pdfjs_internal_id_176R pdfjs_internal_id_178R">Le présent contrat de sous-location est conclu pour une durée de ……………… années et ………………mois, qui ne pourra,</span><br role="presentation"><span style="left: 3.56%; top: 26.54%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.99751);" role="presentation" dir="ltr">en toute hypothèse, excéder celle du bail principal.</span><br role="presentation"><span style="left: 3.56%; top: 29.86%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.992566);" role="presentation" dir="ltr">Chacune des parties aura la faculté d’y mettre fin à tout moment sans indemnité, par lettre recommandée avec accusé de</span><br role="presentation"><span style="left: 3.56%; top: 31.53%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.983625);" dir="ltr" aria-owns="pdfjs_internal_id_179R">réception, sous réserve de respecter un préavis de ………………mois.</span><br role="presentation"><span style="left: 3.56%; top: 38.25%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.989872);" dir="ltr" aria-owns="pdfjs_internal_id_180R">La présente sous-location est consentie et acceptée moyennant un loyer mensuel de …………………… (indiquer la</span><br role="presentation"><span style="left: 3.56%; top: 39.91%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.991731);" dir="ltr" aria-owns="pdfjs_internal_id_181R">somme en chiffres et en toutes lettres en euro) payable avant le …………………… (notez le jour du mois) de chaque mois</span><br role="presentation"><span style="left: 3.56%; top: 41.57%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.997443);" role="presentation" dir="ltr">au domicile du locataire principal.</span><br role="presentation"><span style="left: 3.56%; top: 44.9%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.997724);" role="presentation" dir="ltr">Le montant du loyer fait l’objet d’une indexation identique à celle du loyer principal. Le sous-locataire remboursera au loca-</span><br role="presentation"><span style="left: 3.56%; top: 46.56%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.990635);" role="presentation" dir="ltr">taire principal sur justificatifs les charges, taxes, et impôts lui incombant au prorata de la surface occupée. Il s’oblige égale</span><span style="left: 93.83%; top: 46.56%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif;" role="presentation" dir="ltr">-</span><br role="presentation"><span style="left: 3.56%; top: 48.22%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(1.01515);" role="presentation" dir="ltr">ment à acquitter toute consommation personnelle (eau, gaz, électricité, téléphone) et tout abonnement y afférent.</span><br role="presentation"><span style="left: 3.56%; top: 68.23%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.989665);" role="presentation" dir="ltr">Un état des lieux sera dressé contradictoirement entre les parties lors de l’entrée dans les lieux. Il demeurera annexé au</span><br role="presentation"><span style="left: 3.56%; top: 69.9%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(1.02948);" role="presentation" dir="ltr">présent contrat.</span><br role="presentation"><span style="left: 3.56%; top: 73.22%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.984086);" role="presentation" dir="ltr">Le sous-locataire s’engage à prendre les locaux dans l’état où ils se trouvent lors de l’entrée dans les lieux, à les entretenir en</span><br role="presentation"><span style="left: 3.56%; top: 74.89%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.992659);" role="presentation" dir="ltr">bon état de réparations locatives et de menu entretien pendant la durée du bail, et à les rendre dans l’état où il les a reçus à</span><br role="presentation"><span style="left: 3.56%; top: 76.55%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(1.00348);" role="presentation" dir="ltr">l’issue du présent contrat.</span><br role="presentation"><span style="left: 3.56%; top: 79.87%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(1.00032);" role="presentation" dir="ltr">Le sous-locataire ne pourra entreprendre aucune transformation sans le consentement écrit du locataire et du bailleur.</span><br role="presentation"><span style="left: 3.56%; top: 86.92%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.981898);" role="presentation" dir="ltr">Le sous-locataire s’oblige à souscrire une police d’assurance garantissant les locaux loués pendant toute la durée du bail</span><br role="presentation"><span style="left: 3.56%; top: 88.58%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.986831);" role="presentation" dir="ltr">contre les risques locatifs habituels et contre les risques pouvant naître de l’exercice de son activité associative. La police</span><br role="presentation"><span style="left: 3.56%; top: 90.25%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.991425);" role="presentation" dir="ltr">souscrite devra comporter une clause de renonciation à tout recours contre le loueur et ses assureurs.</span><br role="presentation"><span style="left: 7.06%; top: 54.59%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.953193);" dir="ltr" aria-owns="pdfjs_internal_id_184R">Le logement est destiné exclusivement à l’habitation principale du locataire</span><br role="presentation"><span style="left: 7.06%; top: 57.41%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.943414);" role="presentation" dir="ltr">Le locataire est autorisé à exercer son activité professionnelle, à l’exclusion, cependant, de toute activité commerciale,</span><br role="presentation"><span style="left: 7.06%; top: 59.43%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.930863);" role="presentation" dir="ltr">artisanale ou industrielle. Le sous-locataire s’engage à n’exercer dans les lieux loués que l’activité suivante :</span><br role="presentation"><span style="left: 7.06%; top: 62.04%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.991045);" dir="ltr" aria-owns="pdfjs_internal_id_182R">…………………………………………………………………………………………………………………………………</span><br role="presentation"><span style="left: 3.59%; top: 95.67%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.976634);" role="presentation" dir="ltr">Page 2/3</span><span style="left: 10.19%; top: 95.67%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif;" role="presentation" dir="ltr"> </span><span style="left: 56.73%; top: 95.08%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.941782);" dir="ltr" aria-owns="pdfjs_internal_id_170R">Paraphes :</span><br role="presentation"><span style="left: 3.53%; top: 4.23%; font-size: calc(var(--scale-factor)*10.00px); font-family: sans-serif; transform: scaleX(0.977134);" dir="ltr" aria-owns="pdfjs_internal_id_171R">des locaux situés ……….…………….…………….…………….……….……….…………….……….....….…………….………....</span><div class="endOfContent"></div></div><div class="annotationLayer" style="width: round(var(--scale-factor) * 595.276px, 1px); height: round(var(--scale-factor) * 841.89px, 1px);" data-main-rotation="0"><section data-annotation-id="171R" style="z-index: 1; left: 17.2962%; top: 3.42087%; width: 75.1114%; height: 1.71044%;" class="textWidgetAnnotation"><input type="text" value="" data-element-id="171R" name="untitled22" tabindex="1000" aria-required="false" style="font-size: calc(8.64px * var(--scale-factor)); color: rgb(0, 0, 0); text-align: left; background-color: transparent;" id="pdfjs_internal_id_171R"></section><section data-annotation-id="172R" style="z-index: 2; left: 3.99143%; top: 9.06532%; width: 91.319%; height: 1.79596%;" class="textWidgetAnnotation"><input type="text" value="" data-element-id="172R" name="untitled23" tabindex="1000" aria-required="false" style="font-size: calc(8.64px * var(--scale-factor)); color: rgb(0, 0, 0); text-align: left; background-color: transparent;" id="pdfjs_internal_id_172R"></section><section data-annotation-id="173R" style="z-index: 3; left: 4.23333%; top: 11.2034%; width: 91.198%; height: 2.13805%;" class="textWidgetAnnotation"><input type="text" value="" data-element-id="173R" name="untitled24" tabindex="1000" aria-required="false" style="font-size: calc(8.64px * var(--scale-factor)); color: rgb(0, 0, 0); text-align: left; background-color: transparent;" id="pdfjs_internal_id_173R"></section><section data-annotation-id="174R" style="z-index: 4; left: 4.59619%; top: 13.6835%; width: 90.5933%; height: 2.22357%;" class="textWidgetAnnotation"><input type="text" value="" data-element-id="174R" name="untitled25" tabindex="1000" aria-required="false" style="font-size: calc(8.64px * var(--scale-factor)); color: rgb(0, 0, 0); text-align: left; background-color: transparent;" id="pdfjs_internal_id_174R"></section><section data-annotation-id="175R" style="z-index: 5; left: 32.6571%; top: 16.7623%; width: 11.8533%; height: 1.967%;" class="textWidgetAnnotation"><input type="text" value="" data-element-id="175R" name="untitled26" tabindex="1000" aria-required="false" style="font-size: calc(8.64px * var(--scale-factor)); color: rgb(0, 0, 0); text-align: left; background-color: transparent;" id="pdfjs_internal_id_175R"></section><section data-annotation-id="177R" style="z-index: 7; left: 64.3466%; top: 16.8478%; width: 11.3695%; height: 1.967%;" class="textWidgetAnnotation"><input type="text" value="" data-element-id="177R" name="untitled29" tabindex="1000" aria-required="false" style="font-size: calc(8.64px * var(--scale-factor)); color: rgb(0, 0, 0); text-align: left; background-color: transparent;" id="pdfjs_internal_id_177R"></section><section data-annotation-id="176R" style="z-index: 6; left: 53.0981%; top: 24.1172%; width: 8.34571%; height: 1.967%;" class="textWidgetAnnotation"><input type="text" value="" data-element-id="176R" name="untitled27" tabindex="1000" aria-required="false" style="font-size: calc(8.64px * var(--scale-factor)); color: rgb(0, 0, 0); text-align: left; background-color: transparent;" id="pdfjs_internal_id_176R"></section><section data-annotation-id="178R" style="z-index: 8; left: 71.3619%; top: 24.1172%; width: 8.10381%; height: 1.79596%;" class="textWidgetAnnotation"><input type="text" value="" data-element-id="178R" name="untitled30" tabindex="1000" aria-required="false" style="font-size: calc(8.64px * var(--scale-factor)); color: rgb(0, 0, 0); text-align: left; background-color: transparent;" id="pdfjs_internal_id_178R"></section><section data-annotation-id="179R" style="z-index: 9; left: 41.8495%; top: 31.13%; width: 9.07142%; height: 1.45387%;" class="textWidgetAnnotation"><input type="text" value="" data-element-id="179R" name="untitled31" tabindex="1000" aria-required="false" style="font-size: calc(7.6px * var(--scale-factor)); color: rgb(0, 0, 0); text-align: left; background-color: transparent;" id="pdfjs_internal_id_179R"></section><section data-annotation-id="180R" style="z-index: 10; left: 68.0961%; top: 37.6296%; width: 11.2486%; height: 1.53939%;" class="textWidgetAnnotation"><input type="text" value="" data-element-id="180R" name="untitled32" tabindex="1000" aria-required="false" style="font-size: calc(8.1px * var(--scale-factor)); color: rgb(0, 0, 0); text-align: left; background-color: transparent;" id="pdfjs_internal_id_180R"></section><section data-annotation-id="181R" style="z-index: 11; left: 51.8885%; top: 39.5966%; width: 12.4581%; height: 1.36835%;" class="textWidgetAnnotation"><input type="text" value="" data-element-id="181R" name="untitled33" tabindex="1000" aria-required="false" style="font-size: calc(7.1px * var(--scale-factor)); color: rgb(0, 0, 0); text-align: left; background-color: transparent;" id="pdfjs_internal_id_181R"></section><section data-annotation-id="183R" style="z-index: 13; left: 3.87047%; top: 54.563%; width: 1.93524%; height: 1.19731%;" class="buttonWidgetAnnotation checkBox"><input data-element-id="183R" aria-required="false" type="checkbox" name="untitled35" exportvalue="Yes" tabindex="1000" style="background-color: transparent;" id="pdfjs_internal_id_183R"></section><section data-annotation-id="184R" style="z-index: 14; left: 3.74952%; top: 57.3852%; width: 2.17714%; height: 1.28283%;" class="buttonWidgetAnnotation checkBox"><input data-element-id="184R" aria-required="false" type="checkbox" name="untitled36" exportvalue="Yes" tabindex="1000" style="background-color: transparent;" id="pdfjs_internal_id_184R"></section><section data-annotation-id="182R" style="z-index: 12; left: 8.46666%; top: 61.1481%; width: 79.9495%; height: 1.967%;" class="textWidgetAnnotation"><input type="text" value="" data-element-id="182R" name="untitled34" tabindex="1000" aria-required="false" style="font-size: calc(8.64px * var(--scale-factor)); color: rgb(0, 0, 0); text-align: left; background-color: transparent;" id="pdfjs_internal_id_182R"></section><section data-annotation-id="170R" style="z-index: 0; left: 65.7981%; top: 93.6464%; width: 30.359%; height: 4.19057%;" class="textWidgetAnnotation"><textarea data-element-id="170R" name="untitled21" tabindex="1000" aria-required="false" style="font-size: calc(8.2px * var(--scale-factor)); color: rgb(0, 0, 0); text-align: left; background-color: transparent;" id="pdfjs_internal_id_170R"></textarea></section></div><div class="annotationEditorLayer disabled" hidden="" dir="ltr" tabindex="0" style="width: round(var(--scale-factor) * 595.276px, 1px); height: round(var(--scale-factor) * 841.89px, 1px);" data-main-rotation="0"></div></div><div class="page" data-page-number="3" role="region" data-l10n-id="pdfjs-page-landmark" data-l10n-args="{&quot;page&quot;:3}" style="width: round(var(--scale-factor) * 595.276px, 1px); height: round(var(--scale-factor) * 841.89px, 1px);" aria-label="Page 3"></div></div>
+        </div>
+      </div> <!-- mainContainer -->
+
+      <div id="dialogContainer">
+        <dialog id="passwordDialog">
+          <div class="row">
+            <label for="password" id="passwordText" data-l10n-id="pdfjs-password-label">Veuillez saisir le mot de passe pour ouvrir ce fichier PDF.</label>
+          </div>
+          <div class="row">
+            <input type="password" id="password" class="toolbarField">
+          </div>
+          <div class="buttonRow">
+            <button id="passwordCancel" class="dialogButton"><span data-l10n-id="pdfjs-password-cancel-button">Annuler</span></button>
+            <button id="passwordSubmit" class="dialogButton"><span data-l10n-id="pdfjs-password-ok-button">OK</span></button>
+          </div>
+        </dialog>
+        <dialog id="documentPropertiesDialog">
+          <div class="row">
+            <span id="fileNameLabel" data-l10n-id="pdfjs-document-properties-file-name">Nom du fichier&nbsp;:</span>
+            <p id="fileNameField" aria-labelledby="fileNameLabel">-</p>
+          </div>
+          <div class="row">
+            <span id="fileSizeLabel" data-l10n-id="pdfjs-document-properties-file-size">Taille du fichier&nbsp;:</span>
+            <p id="fileSizeField" aria-labelledby="fileSizeLabel">-</p>
+          </div>
+          <div class="separator"></div>
+          <div class="row">
+            <span id="titleLabel" data-l10n-id="pdfjs-document-properties-title">Titre&nbsp;:</span>
+            <p id="titleField" aria-labelledby="titleLabel">-</p>
+          </div>
+          <div class="row">
+            <span id="authorLabel" data-l10n-id="pdfjs-document-properties-author">Auteur&nbsp;:</span>
+            <p id="authorField" aria-labelledby="authorLabel">-</p>
+          </div>
+          <div class="row">
+            <span id="subjectLabel" data-l10n-id="pdfjs-document-properties-subject">Sujet&nbsp;:</span>
+            <p id="subjectField" aria-labelledby="subjectLabel">-</p>
+          </div>
+          <div class="row">
+            <span id="keywordsLabel" data-l10n-id="pdfjs-document-properties-keywords">Mots-clés&nbsp;:</span>
+            <p id="keywordsField" aria-labelledby="keywordsLabel">-</p>
+          </div>
+          <div class="row">
+            <span id="creationDateLabel" data-l10n-id="pdfjs-document-properties-creation-date">Date de création&nbsp;:</span>
+            <p id="creationDateField" aria-labelledby="creationDateLabel">-</p>
+          </div>
+          <div class="row">
+            <span id="modificationDateLabel" data-l10n-id="pdfjs-document-properties-modification-date">Modifié le&nbsp;:</span>
+            <p id="modificationDateField" aria-labelledby="modificationDateLabel">-</p>
+          </div>
+          <div class="row">
+            <span id="creatorLabel" data-l10n-id="pdfjs-document-properties-creator">Créé par&nbsp;:</span>
+            <p id="creatorField" aria-labelledby="creatorLabel">-</p>
+          </div>
+          <div class="separator"></div>
+          <div class="row">
+            <span id="producerLabel" data-l10n-id="pdfjs-document-properties-producer">Outil de conversion PDF&nbsp;:</span>
+            <p id="producerField" aria-labelledby="producerLabel">-</p>
+          </div>
+          <div class="row">
+            <span id="versionLabel" data-l10n-id="pdfjs-document-properties-version">Version PDF&nbsp;:</span>
+            <p id="versionField" aria-labelledby="versionLabel">-</p>
+          </div>
+          <div class="row">
+            <span id="pageCountLabel" data-l10n-id="pdfjs-document-properties-page-count">Nombre de pages&nbsp;:</span>
+            <p id="pageCountField" aria-labelledby="pageCountLabel">-</p>
+          </div>
+          <div class="row">
+            <span id="pageSizeLabel" data-l10n-id="pdfjs-document-properties-page-size">Taille de la page&nbsp;:</span>
+            <p id="pageSizeField" aria-labelledby="pageSizeLabel">-</p>
+          </div>
+          <div class="separator"></div>
+          <div class="row">
+            <span id="linearizedLabel" data-l10n-id="pdfjs-document-properties-linearized">Affichage rapide des pages web&nbsp;:</span>
+            <p id="linearizedField" aria-labelledby="linearizedLabel">-</p>
+          </div>
+          <div class="buttonRow">
+            <button id="documentPropertiesClose" class="dialogButton"><span data-l10n-id="pdfjs-document-properties-close-button">Fermer</span></button>
+          </div>
+        </dialog>
+        <dialog id="altTextDialog" aria-labelledby="dialogLabel" aria-describedby="dialogDescription">
+          <div id="altTextContainer">
+            <div id="overallDescription">
+              <span id="dialogLabel" data-l10n-id="pdfjs-editor-alt-text-dialog-label" class="title">Sélectionnez une option</span>
+              <span id="dialogDescription" data-l10n-id="pdfjs-editor-alt-text-dialog-description">Le texte alternatif est utile lorsque des personnes ne peuvent pas voir l’image ou que l’image ne se charge pas.</span>
+            </div>
+            <div id="addDescription">
+              <div class="radio">
+                <div class="radioButton">
+                  <input type="radio" id="descriptionButton" name="altTextOption" tabindex="0" aria-describedby="descriptionAreaLabel" checked="">
+                  <label for="descriptionButton" data-l10n-id="pdfjs-editor-alt-text-add-description-label">Ajouter une description</label>
+                </div>
+                <div class="radioLabel">
+                  <span id="descriptionAreaLabel" data-l10n-id="pdfjs-editor-alt-text-add-description-description">Il est conseillé de rédiger une ou deux phrases décrivant le sujet, le cadre ou les actions.</span>
+                </div>
+              </div>
+              <div class="descriptionArea">
+                <textarea id="descriptionTextarea" placeholder="Par exemple, «&nbsp;Un jeune homme est assis à une table pour prendre un repas&nbsp;»" aria-labelledby="descriptionAreaLabel" data-l10n-id="pdfjs-editor-alt-text-textarea" tabindex="0"></textarea>
+              </div>
+            </div>
+            <div id="markAsDecorative">
+              <div class="radio">
+                <div class="radioButton">
+                  <input type="radio" id="decorativeButton" name="altTextOption" aria-describedby="decorativeLabel">
+                  <label for="decorativeButton" data-l10n-id="pdfjs-editor-alt-text-mark-decorative-label">Marquer comme décorative</label>
+                </div>
+                <div class="radioLabel">
+                  <span id="decorativeLabel" data-l10n-id="pdfjs-editor-alt-text-mark-decorative-description">Cette option est utilisée pour les images décoratives, comme les bordures ou les filigranes.</span>
+                </div>
+              </div>
+            </div>
+            <div id="buttons">
+              <button id="altTextCancel" tabindex="0"><span data-l10n-id="pdfjs-editor-alt-text-cancel-button">Annuler</span></button>
+              <button id="altTextSave" tabindex="0"><span data-l10n-id="pdfjs-editor-alt-text-save-button">Enregistrer</span></button>
+            </div>
+          </div>
+        </dialog>
+      </div>  <!-- dialogContainer -->
+
+    </div> <!-- outerContainer -->
+    <div id="printContainer"></div>
+  
+
+</html>
